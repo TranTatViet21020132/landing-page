@@ -1,0 +1,62 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table customer {
+  id String [pk]
+  email String [unique, not null]
+  phone String
+  first_name String [not null]
+  last_name String [not null]
+  address address [not null]
+  address_id String [not null]
+  personal_income Int [not null]
+  status Status [not null]
+  is_verify_otp Boolean [not null, default: false]
+  otp String
+  application application [not null]
+  attempts Int [not null, default: 0]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+}
+
+Table address {
+  id String [pk]
+  city String
+  province String [not null]
+  district String [not null]
+  town String [not null]
+  street String [not null]
+  customer customer [not null]
+}
+
+Table application {
+  id String [pk]
+  loan_amount Int [not null]
+  customer customer [not null]
+  customer_id String [not null]
+  reason_id String [not null]
+  reason reason [not null]
+  is_submit Boolean [not null, default: false]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+}
+
+Table reason {
+  id String [pk]
+  type String [not null]
+  application application [not null]
+  created_at DateTime [default: `now()`, not null]
+  updated_at DateTime [not null]
+}
+
+Enum Status {
+  ACTIVE
+  BLOCKED
+}
+
+Ref: customer.address_id > address.id
+
+Ref: application.customer_id > customer.id
+
+Ref: application.reason_id > reason.id

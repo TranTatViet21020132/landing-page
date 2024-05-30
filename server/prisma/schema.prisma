@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model customer {
+  id              String        @id @default(uuid())
+  email           String        @unique
+  phone           String?
+  first_name      String
+  last_name       String
+  address         address       @relation(fields: [address_id], references: [id])
+  address_id      String
+  personal_income Int
+  status          Status
+  is_verify_otp   Boolean       @default(false)
+  otp             String?
+  application     application[]
+  attempts        Int           @default(0)
+  created_at      DateTime      @default(now())
+  updated_at      DateTime      @updatedAt
+
+  @@index([email], name: "customer_email")
+}
+
+model address {
+  id       String     @id @default(uuid())
+  city     String?
+  province String
+  district String
+  town     String
+  street   String
+  customer customer[]
+}
+
+model application {
+  id          String   @id @default(uuid())
+  loan_amount Int
+  customer    customer @relation(fields: [customer_id], references: [id])
+  customer_id String
+  reason_id   String
+  reason      reason   @relation(fields: [reason_id], references: [id])
+  is_submit   Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model reason {
+  id          String        @id @default(uuid())
+  type        String
+  application application[]
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+}
+
+enum Status {
+  ACTIVE
+  BLOCKED
+}
