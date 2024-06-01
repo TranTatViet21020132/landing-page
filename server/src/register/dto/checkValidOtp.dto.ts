@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsEmail, IsString, Length } from 'class-validator';
 
-export class RegisterDto {
+export class CheckValidOtp {
   @IsNotEmpty({ message: 'Email cannot be empty' })
   @IsEmail({}, { message: 'Invalid email format' })
   email: string;

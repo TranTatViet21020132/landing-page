@@ -1,12 +1,15 @@
-import { IsNotEmpty, IsEmail } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
 
-export class RegisterDto {
-  @IsNotEmpty({ message: 'Email cannot be empty' })
-  @IsEmail({}, { message: 'Invalid email format' })
-  email: string;
+export class CreateApplicationDto {
+  @IsNotEmpty({ message: 'Loan amount cannot be empty' })
+  @IsNumber()
+  loan_amount: number;
 
-  phone: string;
-  first_name: string;
-  last_name: string;
-  personal_income: number;
+  @IsNotEmpty({ message: 'Customer id cannot be empty' })
+  @IsString({ message: 'Customer id must be string format' })
+  customer_id: string;
+
+  @IsNotEmpty({ message: 'Reason id cannot be empty' })
+  @IsString({ message: 'Reason id must be string format' })
+  reason_id: string;
 }

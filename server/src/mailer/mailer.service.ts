@@ -31,7 +31,7 @@ export class MailerService {
       <p style="color:#4f545c">${congratRegister}</p>
       <p style="color:#4f545c">${welcome}</p>
                 </div></td></tr><tr><td style="word-break:break-word;font-size:0px;padding:10px 25px;padding-top:20px background-color=#8daf7" align="center"><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate" align="center" border="0"><tbody><tr><td style="border:none;border-radius:3px;color:white;padding:15px 19px" align="center" valign="middle" bgcolor="#5865f2">
-                  <p class="il">Your OTP is: <span>${otp}</span></p> your email
+                  <p class="il" style="color:white">Your OTP is: <span>${otp}</span></p> your email
                 </a></td></tr></tbody></table></td></tr><tr><td style="word-break:break-word;font-size:0px;padding:30px 0px"><p style="font-size:1px;margin:0px auto;border-top:1px solid #dcddde;width:100%"></p></td></tr><tr><td style="word-break:break-word;font-size:0px;padding:0px" align="left"><div style="color:#747f8d;font-family:Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;font-size:13px;line-height:16px;text-align:left">
       <p>Need help?<br>
       Want to give us feedback? Let us know what you think on our feedback site.</p>

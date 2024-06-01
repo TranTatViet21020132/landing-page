@@ -15,10 +15,10 @@ model customer {
   id              String        @id @default(uuid())
   email           String        @unique
   phone           String?
-  first_name      String
-  last_name       String
-  address         address       @relation(fields: [address_id], references: [id])
-  address_id      String
+  first_name      String?
+  last_name       String?
+  address         address?      @relation(fields: [address_id], references: [id])
+  address_id      String?
   personal_income Int
   status          Status
   is_verify_otp   Boolean       @default(false)
@@ -33,10 +33,9 @@ model customer {
 
 model address {
   id       String     @id @default(uuid())
-  city     String?
   province String
   district String
-  town     String
+  ward     String
   street   String
   customer customer[]
 }

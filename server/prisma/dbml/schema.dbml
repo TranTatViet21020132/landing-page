@@ -6,10 +6,10 @@ Table customer {
   id String [pk]
   email String [unique, not null]
   phone String
-  first_name String [not null]
-  last_name String [not null]
-  address address [not null]
-  address_id String [not null]
+  first_name String
+  last_name String
+  address address
+  address_id String
   personal_income Int [not null]
   status Status [not null]
   is_verify_otp Boolean [not null, default: false]
@@ -22,10 +22,9 @@ Table customer {
 
 Table address {
   id String [pk]
-  city String
   province String [not null]
   district String [not null]
-  town String [not null]
+  ward String [not null]
   street String [not null]
   customer customer [not null]
 }
