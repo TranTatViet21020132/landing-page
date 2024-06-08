@@ -6,3 +6,8 @@ export type User = {
   gender: string;
   address: string;
 }
+
+export type Register = {
+  email: string;
+  otp?: string;
+}
