@@ -5,4 +5,4 @@ export type User = {
   phone: string;
   gender: string;
   address: string;
-};
+}

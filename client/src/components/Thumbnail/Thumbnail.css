@@ -1,0 +1,112 @@
+.thumbnail-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: #F7DEC9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.thumbnail-titles {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  row-gap: 0.4rem;
+}
+
+.thumbnail-titles h1 {
+  font-size: 2.4rem;
+  color: #DD3333;
+}
+
+.thumbnail-titles h2 {
+  font-size: 2rem;
+}
+
+.checkpoints-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+.checkpoint {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.thumbnail-button {
+  background: white;
+  border-radius: var(--card-border-radius);
+  width: fit-content;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  cursor: pointer;
+  animation: zoom-in-zoom-out 1.75s ease infinite;
+  box-shadow: 1 1 1px gray;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.thumbnail-image {
+  object-fit: contain;
+  overflow: hidden;
+  display: flex;
+  justify-content: end;
+  height: 100vh;
+  aspect-ratio: inherit;
+}
+
+.thumbnail-image img {
+  width: 100%;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+}
+
+.register-form label {
+  font-weight: bold;
+}
+
+.register-form input {
+  padding: 0.4rem;
+}
+
+.register-form input:focus {
+  outline: none;
+  padding: 0.4rem;
+}
+
+.otp-input {
+  width: 3rem !important;
+  height: 3rem;
+  margin: 0;
+  font-size: 2rem;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 2px grey;
+}
+
+.otp-input:focus {
+  outline: none;
+}

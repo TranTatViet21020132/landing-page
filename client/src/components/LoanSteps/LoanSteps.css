@@ -1,0 +1,76 @@
+.loanSteps-container {
+  background: url(../../assets//images//loanstep-bg.png);
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: fit-content;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  overflow: hidden;
+}
+
+.loanSteps-title h3 {
+  font-size: 2rem;
+  color: #DD3333;
+}
+
+.loanSteps-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.single-step {
+  padding: 1.4rem 0.8rem;
+  width: 80%;
+  background: rgba(255,255,255,0.84);
+  justify-self: center;
+  border-radius: var(--card-border-radius);
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  word-break: break-word;
+  gap: 0.8rem;
+  transition: all 200ms ease-in-out;
+}
+
+.single-step:hover {
+  transform: scale(92%);
+}
+
+.single-step-counter {
+  width: 2.6rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #DD3333;
+  border-radius: 50%;
+}
+
+.single-step-counter span {
+  font-size: 1.2rem;
+  color: #DD3333;
+  font-weight: bold;
+}
+
+.single-step-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+}
+
+.single-step-content h4 {
+  color: #DD3333;
+  text-decoration: underline 0.15em rgba(255, 68, 68, 0);
+  transition: all 200ms ease-in-out;
+  text-underline-offset: 0.2em;
+}
+
+.single-step-content h4:hover {
+  cursor: pointer;
+  text-decoration-color: rgba(255, 68, 68, 1);
+  text-underline-offset: 0.22em;
+}

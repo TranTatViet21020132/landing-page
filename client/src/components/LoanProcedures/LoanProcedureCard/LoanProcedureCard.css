@@ -1,0 +1,104 @@
+.loan-procedures h3, h5 {
+  color: #DD3333;
+  text-decoration: underline 0.15em rgba(255, 68, 68, 0);
+  transition: all 200ms ease-in-out;
+  text-underline-offset: 0.2em;
+}
+
+.loan-procedures h5:hover {
+  cursor: pointer;
+  text-decoration-color: rgba(255, 68, 68, 1);
+  text-underline-offset: 0.24em;
+}
+
+.loan-procedures {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 100%;
+  background: #F7DEC9;
+  border-radius: 10px;
+}
+
+.loan-procedures-header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  padding: 1rem 1rem 0.4rem;
+}
+
+.loan-procedures-header h4 {
+  font-size: 1.1rem;
+}
+
+.loan-procedures-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.loanProcedures-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  transition: all 200ms ease-in-out;
+  border-radius: var(--card-border-radius);
+  justify-content: space-between;
+}
+
+.loanProcedures-item:hover {
+  filter: brightness(80%);
+  background: #f7dec96b;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.item-image {
+  object-fit: contain;
+  max-width: 2rem;
+  aspect-ratio: 1 / 1;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.44rem;
+  border-radius: 50%;
+}
+
+.item-image img {
+  width: 90%;
+  aspect-ratio: 1 / 1;
+}
+
+.item-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  flex-wrap: wrap;
+  word-break: break-word;
+  row-gap: 0.4rem;
+}
+
+.item-content h5 {
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.item-content span {
+  font-size: 0.78rem;
+}
+
+.item-counter {
+  justify-self: end;
+  display: flex;
+}
+
+.item-counter span {
+  font-weight: 700;
+}

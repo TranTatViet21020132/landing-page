@@ -4,6 +4,9 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import './assets/fonts/Magistral/Magistral-Bold.ttf';
+import './assets/fonts/Sarabun/Sarabun-Regular.ttf';
+import './assets/fonts/PFBeauSansPro/PFBeauSansPro-Bold.ttf';
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(

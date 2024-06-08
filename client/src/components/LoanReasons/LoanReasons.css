@@ -1,0 +1,37 @@
+.loanReasons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem 2rem 2rem;
+  row-gap: 1rem;
+  background: #F7DEC9;
+}
+
+.loanReasons-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+.loanReasons-content .checkpoint {
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background-color: #EEDDDD;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 1px #9b3131;
+}
+
+.left-content, .right-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.8rem;
+  align-items: center;
+}
+
+.loanReasons-content span {
+  font-size: 0.9rem;
+}

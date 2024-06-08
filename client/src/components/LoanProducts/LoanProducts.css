@@ -1,0 +1,62 @@
+.loanProducts-container {
+  width: 100%;
+  background: #EFF0F0;
+  padding: 1rem 0;
+}
+
+.loanProducts-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.product-label-container h4 {
+  text-decoration: underline 0.15em rgba(255, 68, 68, 0);
+  transition: all 200ms ease-in-out;
+}
+
+.product-label-container h4:hover {
+  color:rgb(255, 68, 68);
+  cursor: pointer;
+  text-decoration-color: rgba(255, 68, 68, 1);
+}
+
+.product-card {
+  height: fit-content;
+  position: relative;
+  overflow: "hidden";
+  margin: 0 1.2rem;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 0 10px rgb(226, 226, 226);
+  border-radius: var(--card-border-radius);
+  padding: 0.8rem;
+}
+
+.product-image-container {
+  width: 100%;
+  object-fit: cover;
+}
+
+.product-image-container img {
+  width: 100%;
+  aspect-ratio: 4 / 2.5;
+  border-radius: var(--card-border-radius);
+}
+
+.product-label-container {
+  margin-top: 0.8rem;
+}
+
+.react-multi-carousel-list {
+  padding: 1rem 0 2rem 0;
+}
+
+.custom-dot-list-style button{
+  border: none;
+  background: #EEDDDD;
+}
+
+.react-multi-carousel-dot.react-multi-carousel-dot--active button{
+  background: rgb(255, 68, 68) !important;
+}

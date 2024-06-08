@@ -1,0 +1,42 @@
+.back-to-top-btn {
+  position: fixed;
+  bottom: 1.4rem;
+  right: 1.4rem;
+  transition: all 200ms ease-out;
+  background: #dc143c;
+  border-radius: var(--card-border-radius);
+  padding: 0.5rem;
+  text-decoration: none;
+  z-index: 10000;
+}
+
+.back-to-top-btn .back-to-top-icon {
+  color: #fff;
+  font-size: 1.6rem;
+  transition: all 200ms ease-out;
+}
+
+.back-to-top-btn:hover {
+  background: #be1a3b;
+}
+
+.back-to-top-btn .back-to-top-icon:hover {
+  transform: translateY(-4px);
+}
+
+::-webkit-scrollbar {
+  display: none;
+  height: 5px;
+  width: 5px;
+  background: #fff3;
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+  background: #fff3;
+}
