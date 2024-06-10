@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
 import "react-multi-carousel/lib/styles.css";
-import './LoanProducts.css';
+import "./LoanProducts.css";
 import Carousel from "react-multi-carousel";
-import product1 from '../../assets/images/product1.jpg';
-import product2 from '../../assets/images/product2.jpg';
-import product3 from '../../assets/images/product3.jpg';
-import product4 from '../../assets/images/product4.jpg';
-import product5 from '../../assets/images/product5.jpg';
-import product6 from '../../assets/images/product6.jpg';
-import { Reveal } from '../Animation/Reveal';
-
+import product1 from "../../assets/images/product1.jpg";
+import product2 from "../../assets/images/product2.jpg";
+import product3 from "../../assets/images/product3.jpg";
+import product4 from "../../assets/images/product4.jpg";
+import product5 from "../../assets/images/product5.jpg";
+import product6 from "../../assets/images/product6.jpg";
+import { Reveal } from "../Animation/Reveal";
 
 const cardContent = [
   {
@@ -41,32 +40,31 @@ const cardContent = [
     title: "CÔNG TÁC CƠ QUAN NHÀ NƯỚC",
     description: "Nhiều gói vay cán bộ, chức trách cấp cao. Có rất nhiều chính sách ưu đãi dành riêng",
     thumbnail: product6,
-  }
-]
+  },
+];
 
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 3,
-    slidesToSlide: 3
+    slidesToSlide: 3,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 2,
-    slidesToSlide: 2
+    slidesToSlide: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
-    slidesToSlide: 1
-  }
+    slidesToSlide: 1,
+  },
 };
 
 const LoanProducts = () => {
-
   return (
-    <div className='loanProducts-container'>
-      <Reveal width='100%'>
+    <div className="loanProducts-container">
+      <Reveal width="100%">
         <div className="loanProducts-header">
           <h3>Sản phẩm dịch vụ vay</h3>
         </div>
@@ -85,21 +83,21 @@ const LoanProducts = () => {
           dotListClass="custom-dot-list-style"
           sliderClass="custom-slider-style"
         >
-        {cardContent.map((item, index) => (
-          <div className='product-card' tabIndex={index}>
-            <div className="product-image-container">
-              <img src={item.thumbnail} alt=''/>
+          {cardContent.map((item, index) => (
+            <div className="product-card" tabIndex={index} key={index}>
+              <div className="product-image-container">
+                <img src={item.thumbnail} alt="" />
+              </div>
+              <div className="product-label-container">
+                <h4>{item.title}</h4>
+                <span>{item.description}</span>
+              </div>
             </div>
-            <div className="product-label-container">
-              <h4>{item.title}</h4>
-              <span>{item.description}</span>
-            </div>
-          </div>
-        ))}
+          ))}
         </Carousel>
       </>
     </div>
   );
-}
+};
 
 export default LoanProducts;

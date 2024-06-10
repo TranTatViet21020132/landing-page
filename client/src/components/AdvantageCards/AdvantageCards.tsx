@@ -1,10 +1,10 @@
-import React from 'react'
-import './AdvantageCards.css'
-import Card from './Card/Card'
-import advan1 from '../../assets/images/advan1.png'
-import advan2 from '../../assets/images/advan2.png'
-import advan3 from '../../assets/images/advan3.png'
-import advan4 from '../../assets/images/advan4.png'
+import React from "react";
+import "./AdvantageCards.css";
+import Card from "./Card/Card";
+import advan1 from "../../assets/images/advan1.png";
+import advan2 from "../../assets/images/advan2.png";
+import advan3 from "../../assets/images/advan3.png";
+import advan4 from "../../assets/images/advan4.png";
 
 const cardContent = [
   {
@@ -30,22 +30,23 @@ const cardContent = [
     description: "Chúng tôi kết nối minh bạch Giữa khách hàng và nơi cho vay",
     imageUrl: advan4,
     hiddenY: -25,
-  }
-]
+  },
+];
 
 const AdvantageCards = () => {
   return (
-    <div className='advantageCards-container'>
+    <div className="advantageCards-container">
       {cardContent.map((item, index) => (
         <Card
-        title={item.title}
-        description={item.description} 
-        imageUrl={item.imageUrl}
-        hiddenY={item.hiddenY}
+          key={index}
+          title={item.title}
+          description={item.description}
+          imageUrl={item.imageUrl}
+          hiddenY={item.hiddenY}
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default AdvantageCards
+export default AdvantageCards;
