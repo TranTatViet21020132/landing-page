@@ -3,7 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './FormPage.css';
 import UserApi from '../../apis/UserApi';
-import axios from 'axios';
 
 type UserSignup = {
   email: string;
@@ -19,8 +18,41 @@ type UserSignup = {
 
 type LoanApplication = {
   loan_amount: number;
-  loan_reason: string;
+  reason_id: string;
   customer_id: string;
+};
+
+type ApiResponse = {
+  message?: string;
+  data?: {
+    id?: string,
+    customer_id?: string,
+    loan_amount?: number,
+    reason?: {
+      id?: string,
+      type?: string,
+      created_at?: string,
+      updated_at?: string,
+    },
+    email?: string,
+    first_name?: string,
+    last_name?: string,
+    phone?: string,
+    personal_income?: number,
+    is_verify_otp?: true,
+    address?: {
+        id?: string,
+        city?: string,
+        province?: string,
+        district?: string,
+        ward?: string,
+        street?: string,
+    },
+    status?: string,
+    created_at?: string,
+    updated_at?: string,
+  };
+  statusCode?: number;
 };
 
 function FormPage() {
@@ -38,7 +70,7 @@ function FormPage() {
 
   const [loanData, setLoanData] = useState<LoanApplication>({
     loan_amount: 0,
-    loan_reason: "",
+    reason_id: "",
     customer_id: ""
   });
 
@@ -49,17 +81,20 @@ function FormPage() {
     const { name, value } = e.target;
     if (activeStep === 1) {
       if (name === 'personal_income') {
-        // Parse value as a number
         const parsedValue = parseInt(value);
-        setData({ ...data, [name]: parsedValue });
+        setData({ ...data, [name]: isNaN(parsedValue) ? 0 : parsedValue });
       } else {
         setData({ ...data, [name]: value });
       }
     } else {
-      setLoanData({ ...loanData, [name]: value });
+      if (name === 'loan_amount') {
+        const parsedValue = parseInt(value);
+        setLoanData({ ...loanData, [name]: isNaN(parsedValue) ? 0 : parsedValue });
+      } else {
+        setLoanData({ ...loanData, [name]: value });
+      }
     }
   };
-  
 
   const handleIndicatorClick = (step: number) => {
     if (step < activeStep) {
@@ -83,12 +118,10 @@ function FormPage() {
           theme: "dark",
         });
 
-        console.log(data);
-
-        const response = await UserApi.addInformation(data);
-        console.log(response);
+        let response: ApiResponse;
+        response = await UserApi.addInformation(data);
         
-        if (response.status === 200) {
+        if (response.statusCode === 200) {
           toast.dismiss();
           toast.success("Validation successful. Proceeding to next step...", {
             position: "top-center",
@@ -99,7 +132,7 @@ function FormPage() {
             theme: "dark",
           });
 
-          setLoanData(prev => ({ ...prev, customer_id: response.data.customer_id }));
+          setLoanData(prev => ({ ...prev, customer_id: response.data?.id ?? "" }));
           setActiveStep(2);
           window.scrollTo(0, 0);
         } else {
@@ -139,9 +172,12 @@ function FormPage() {
           theme: "dark",
         });
 
-        const response = await UserApi.loan(loanData);
+        console.log(loanData);
 
-        if (response.status === 200) {
+        let response : ApiResponse;
+        response = await UserApi.loan(loanData);
+
+        if (response.statusCode === 200) {
           toast.dismiss();
           toast.success("Application submitted successfully. Redirecting...", {
             position: "top-center",
@@ -172,7 +208,6 @@ function FormPage() {
           closeOnClick: false,
           theme: "dark",
         });
-        console.error("Error submitting application:", error);
       } finally {
         setLoading(false);
       }
@@ -348,17 +383,21 @@ function FormPage() {
                 <label>Loan Amount</label>
               </div>
               <div className="input-group">
-                <input
-                  onChange={handleInputChange}
-                  value={loanData.loan_reason}
-                  className='form-control dropdown'
-                    required
+                <select
+                  id="reason_id"
                   dir='auto'
-                  type="text"
-                  name='loan_reason'
-                  placeholder=''
-                />
-                <label>Loan Reason</label>
+                  name='reason_id'
+                  onChange={handleInputChange}
+                  value={loanData.reason_id}
+                  className='form-control dropdown'
+                  required
+                >
+                  <option value="1">Volvo</option>
+                  <option value="2">Saab</option>
+                  <option value="3">Fiat</option>
+                  <option value="4">Audi</option>
+                </select>
+                <label>San pham vay</label>
               </div>
             </div>
           )}
