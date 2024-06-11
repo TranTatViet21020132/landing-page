@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import UserApi from "../../apis/UserApi";
 
 export function useThumbnailHook() {
   const [open, setOpen] = useState(false);
@@ -25,13 +26,15 @@ export function useThumbnailHook() {
           email,
         });
 
+        // const response = await UserApi.register({email});
+
         if (response && response.status === 200) {
           setTimeout(() => {
             setOpen(false);
             setConfirmLoading(false);
             notification.success({
               message: response.data.message,
-              placement: "top",
+              placement: "bottomLeft",
               duration: 2,
             });
             setRegisterComplete(true);
@@ -44,7 +47,7 @@ export function useThumbnailHook() {
             setConfirmLoading(false);
             notification.error({
               message: err?.response?.data.message,
-              placement: "top",
+              placement: "bottomLeft",
               duration: 2,
             });
             setRegisterComplete(false);
@@ -55,7 +58,7 @@ export function useThumbnailHook() {
             setConfirmLoading(false);
             notification.error({
               message: `Đăng ký thất bại, ${err.message}`,
-              placement: "top",
+              placement: "bottomLeft",
               duration: 2,
             });
             setRegisterComplete(false);
@@ -80,13 +83,15 @@ export function useThumbnailHook() {
           otp,
         });
 
+        // const response = await UserApi.verifyOtp({email, otp});
+
         if (response && response.status === 200) {
           setTimeout(() => {
             setOpen(false);
             setConfirmLoading(false);
             notification.success({
               message: response.data.message,
-              placement: "top",
+              placement: "bottomLeft",
               duration: 2,
             });
             setRegisterComplete(true);
@@ -101,7 +106,7 @@ export function useThumbnailHook() {
             setOtp("");
             notification.error({
               message: err?.response?.data.message,
-              placement: "top",
+              placement: "bottomLeft",
               duration: 2,
             });
           }, 2000);
@@ -110,7 +115,7 @@ export function useThumbnailHook() {
             setOtp("");
             notification.error({
               message: `Internal Server, ${err.message}`,
-              placement: "top",
+              placement: "bottomLeft",
               duration: 2,
             });
           }, 2000);

@@ -1,0 +1,176 @@
+.signup-form-page {
+  background-image: url(../../assets//images/formpage_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: grey;
+  height: fit-content;
+}
+
+.signup-form-page h2 {
+  font-weight: 600;
+  font-size: 2rem;
+  color: black;
+}
+
+.signup-form-container {
+  margin: 4rem 0;
+  background: white;
+  padding: 1.6rem 3rem;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.step-indicator-container {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.indicator {
+  width: 2.2rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid var(--color-borders-input);
+  border-radius: 50%;
+  margin: 0 0.6rem;
+}
+
+.indicator.active {
+  border: 3px solid #dd3333e9;
+}
+
+.indicator span {
+  font-size: 1rem;
+  color: black;
+  font-weight: bold;
+}
+
+.line {
+  background-color: grey;
+  content: "";
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.signup-contents {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.signup-contents h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.signup-btn {
+  margin-top: 1.5rem;
+  height: 3.6rem;
+  border-radius: 10px;
+  background: #dd3333e9;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  font-weight: 550;
+  transition: filter 0.1s ease;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  filter: brightness(75%);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  --border-width: 1px;
+  display: block;
+
+  padding: calc(0.75rem - var(--border-width)) calc(0.9rem - var(--border-width));
+  border: var(--border-width) solid var(--color-borders-input);
+  border-radius: 0.75rem;
+  color: var(--color-text);
+  background-color: transparent;
+  outline: none;
+  transition: border-color .15s ease;
+  word-break: break-word;
+  --webkit-appearance: none;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+
+.form-control.text {
+  width: calc(100% - calc(2 * 0.9rem - 2 * var(--border-width)));
+  height: 1.6rem;
+}
+
+.form-control.dropdown {
+  width: 100%;
+  height: 3rem;
+}
+
+.form-control::placeholder {
+  color: transparent;
+}
+
+.form-control[dir] {
+  text-align: initial;
+}
+
+.form-control:hover,
+.form-control:focus {
+  border-color: var(--color-primary);
+}
+
+.form-control:hover+label {
+  color: var(--color-primary);
+}
+
+.form-control:focus+label {
+  color: var(--color-primary);
+  transform: scale(0.75) translate(-0.5rem, -2.25rem);
+}
+
+.form-control:not(:placeholder-shown)+label {
+  color: var(--color-primary);
+  transform: scale(0.75) translate(-0.5rem, -2.25rem);
+}
+
+.input-group label {
+  display: block;
+  padding: 0 0.25rem;
+  position: absolute;
+  left: 0.75rem;
+  top: 0.9375rem;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-placeholders);
+  transition: transform .15s ease-out, color .15s ease-out;
+  cursor: var(--custom-cursor, text);
+  pointer-events: none;
+  transform-origin: left center;
+  white-space: nowrap;
+  line-height: 1.25rem;
+}

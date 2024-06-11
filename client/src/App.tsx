@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading";
 import MainLayout from "./layouts/MainLayout";
 import NotFound from "./pages/NotFound";
@@ -17,7 +17,6 @@ function App() {
                 <Route key={path} path={path} element={element}></Route>
               ))}
           </Route>
-          <Route path="/" element={<Navigate to="/landing-page" replace />} />
           <Route path={"*"} element={<NotFound />}></Route>
         </Routes>
       </React.Suspense>

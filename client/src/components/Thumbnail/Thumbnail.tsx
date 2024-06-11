@@ -17,7 +17,6 @@ const Thumbnail: React.FC = () => {
     registerComplete,
     showOtpModal,
     setOtp,
-    navigate,
     showModal,
     handleOk,
     handleCancel,
@@ -39,8 +38,8 @@ const Thumbnail: React.FC = () => {
 
   React.useEffect(() => {
     if (otp.length === 6) {
-      // handleOtpOk(email);
-      handleOtpOk("vinhphuccse@gmail.com");
+      handleOtpOk(email);
+      // handleOtpOk("vinhphuccse@gmail.com");
     }
   }, [otp]);
 
