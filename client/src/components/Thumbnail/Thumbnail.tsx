@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal } from "antd";
 import OtpInput from "react-otp-input";
 import { Reveal } from "../Animation/Reveal";
@@ -8,6 +8,8 @@ import thumbnail from "../../assets/images/thumbnail.png";
 import { useThumbnailHook } from "./ThumbnailHook";
 
 import "./Thumbnail.css";
+import { FormContext } from '../../context/formContext';
+import { FormContextType } from "../../types/FormPage/FormContext";
 
 const Thumbnail: React.FC = () => {
   const {
@@ -26,7 +28,7 @@ const Thumbnail: React.FC = () => {
     setShowOtpModal,
   } = useThumbnailHook();
 
-  const [email, setEmail] = useState<string>("");
+  const { email, setEmail } = React.useContext(FormContext) as FormContextType;
 
   React.useEffect(() => {
     if (registerComplete) {

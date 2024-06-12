@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import UserApi from "../../apis/UserApi";
 
 export function useThumbnailHook() {
   const [open, setOpen] = useState(false);

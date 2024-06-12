@@ -1,269 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import React from "react";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useFormPageHook } from './FormPageHook'
 import "./FormPage.css";
-import UserApi from "../../apis/UserApi";
-import axios from "axios";
 
-type UserSignup = {
-  email: string;
-  phone: string;
-  first_name: string;
-  last_name: string;
-  personal_income: number;
-  province: string;
-  district: string;
-  ward: string;
-  street: string;
-};
-
-type LoanApplication = {
-  loan_amount: number;
-  reason_id: string;
-  customer_id: string;
-};
-
-type ApiResponse = {
-  message?: string;
-  data?: {
-    id?: string;
-    customer_id?: string;
-    loan_amount?: number;
-    reason?: {
-      id?: string;
-      type?: string;
-      created_at?: string;
-      updated_at?: string;
-    };
-    email?: string;
-    first_name?: string;
-    last_name?: string;
-    phone?: string;
-    personal_income?: number;
-    is_verify_otp?: true;
-    address?: {
-      id?: string;
-      city?: string;
-      province?: string;
-      district?: string;
-      ward?: string;
-      street?: string;
-    };
-    status?: string;
-    created_at?: string;
-    updated_at?: string;
-  };
-  statusCode?: number;
-};
-
-type Province = {
-  code: string;
-  name: string;
-};
-
-type District = {
-  code: string;
-  name: string;
-};
-
-type Ward = {
-  code: string;
-  name: string;
-  province: string;
-};
-
-function FormPage() {
-  const [provinces, setProvinces] = useState<Province[]>([]);
-  const [districts, setDistricts] = useState<District[]>([]);
-  const [wards, setWards] = useState<Ward[]>([]);
-
-  const [data, setData] = useState<UserSignup>({
-    email: "trantatviet2003@gmail.com",
-    phone: "",
-    first_name: "",
-    last_name: "",
-    personal_income: 1000000, //min 1 million
-    province: "",
-    district: "",
-    ward: "",
-    street: "",
-  });
-
-  const [loanData, setLoanData] = useState<LoanApplication>({
-    loan_amount: 0,
-    reason_id: "",
-    customer_id: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [activeStep, setActiveStep] = useState(1);
-
-  useEffect(() => {
-    const getProvince = async () => {
-      const provinces = await axios.get("https://api.mysupership.vn/v1/partner/areas/province", {
-        headers: {
-          Accept: "application/json",
-        },
-      });
-      setProvinces(provinces.data.results);
-    };
-
-    getProvince();
-  }, []);
-
-  const getDistrictList = async (provinceCode: string) => {
-    const districts = await axios.get(`https://api.mysupership.vn/v1/partner/areas/district?province=${provinceCode}`, {
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    setDistricts(districts.data.results);
-  };
-
-  const getWardList = async (districtCode: string) => {
-    const wards = await axios.get(`https://api.mysupership.vn/v1/partner/areas/commune?district=${districtCode}`, {
-      headers: {
-        Accept: "application/json",
-      },
-    });
-    setWards(wards.data.results);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    if (activeStep === 1) {
-      if (name === "personal_income") {
-        const parsedValue = parseInt(value);
-        setData({ ...data, [name]: isNaN(parsedValue) ? 0 : parsedValue });
-      } else {
-        setData({ ...data, [name]: value });
-      }
-    } else {
-      if (name === "loan_amount") {
-        const parsedValue = parseInt(value);
-        setLoanData({ ...loanData, [name]: isNaN(parsedValue) ? 0 : parsedValue });
-      } else {
-        setLoanData({ ...loanData, [name]: value });
-      }
-    }
-  };
-
-  const handleIndicatorClick = (step: number) => {
-    if (step < activeStep) {
-      setActiveStep(step);
-    }
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
-
-    if (activeStep === 1) {
-      try {
-        toast.dismiss();
-        toast.info("Validating, please wait...", {
-          position: "top-center",
-          autoClose: false,
-          hideProgressBar: true,
-          pauseOnHover: true,
-          closeOnClick: false,
-          theme: "dark",
-        });
-
-        let response: ApiResponse;
-        response = await UserApi.addInformation(data);
-
-        if (response.statusCode === 200) {
-          toast.dismiss();
-          toast.success("Validation successful. Proceeding to next step...", {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: true,
-            pauseOnHover: true,
-            closeOnClick: false,
-            theme: "dark",
-          });
-
-          setLoanData((prev) => ({ ...prev, customer_id: response.data?.id ?? "" }));
-          setActiveStep(2);
-          window.scrollTo(0, 0);
-        } else {
-          toast.dismiss();
-          toast.error("Validation failed", {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: true,
-            pauseOnHover: true,
-            closeOnClick: false,
-            theme: "dark",
-          });
-        }
-      } catch (error) {
-        toast.dismiss();
-        toast.error("Error validating data!", {
-          position: "top-center",
-          autoClose: 2500,
-          hideProgressBar: true,
-          pauseOnHover: true,
-          closeOnClick: false,
-          theme: "dark",
-        });
-      } finally {
-        setLoading(false);
-      }
-    } else if (activeStep === 2) {
-      try {
-        toast.dismiss();
-        toast.info("Submitting application, please wait...", {
-          position: "top-center",
-          autoClose: false,
-          hideProgressBar: true,
-          pauseOnHover: true,
-          closeOnClick: false,
-          theme: "dark",
-        });
-
-        console.log("loanData:", loanData);
-
-        let response: ApiResponse;
-        response = await UserApi.loan(loanData);
-
-        if (response.statusCode === 200) {
-          toast.dismiss();
-          toast.success("Application submitted successfully. Redirecting...", {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: true,
-            pauseOnHover: true,
-            closeOnClick: false,
-            theme: "dark",
-          });
-        } else {
-          toast.dismiss();
-          toast.error("Application submission failed", {
-            position: "top-center",
-            autoClose: 2500,
-            hideProgressBar: true,
-            pauseOnHover: true,
-            closeOnClick: false,
-            theme: "dark",
-          });
-        }
-      } catch (error) {
-        toast.dismiss();
-        toast.error("Error submitting application!", {
-          position: "top-center",
-          autoClose: 2500,
-          hideProgressBar: true,
-          pauseOnHover: true,
-          closeOnClick: false,
-          theme: "dark",
-        });
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
+const FormPage: React.FC = () => {
+  const {
+    provinces,
+    districts,
+    wards,
+    data,
+    setData,
+    loanData,
+    loading,
+    activeStep,
+    getDistrictList,
+    getWardList,
+    handleInputChange,
+    handleIndicatorClick,
+    handleSubmit,
+  } = useFormPageHook();
 
   return (
     <div className="signup-form-page">
@@ -367,62 +123,70 @@ function FormPage() {
                   </select>
                   <label>Tỉnh/Thành phố</label>
                 </div>
-                <div className="input-group">
-                  <select
-                    id="district"
-                    dir="auto"
-                    name="district"
-                    onChange={(e) => {
-                      const selectedOption = JSON.parse(e.target.value);
-                      setData({ ...data, district: selectedOption.name });
-                      getWardList(selectedOption.code);
-                    }}
-                    value={JSON.stringify(districts.find((district) => district.name === data.district))}
-                    className="form-control dropdown"
-                    required
-                  >
-                    {districts?.map((district) => (
-                      <option value={JSON.stringify(district)} key={district.code}>
-                        {district.name}
-                      </option>
-                    ))}
-                  </select>
-                  <label>Quận/Huyện</label>
-                </div>
-                <div className="input-group">
-                  <select
-                    id="ward"
-                    dir="auto"
-                    name="ward"
-                    onChange={(e) => {
-                      const selectedOption = JSON.parse(e.target.value);
-                      setData({ ...data, ward: selectedOption.name });
-                    }}
-                    value={JSON.stringify(wards.find((ward) => ward.name === data.ward))}
-                    className="form-control dropdown"
-                    required
-                  >
-                    {wards?.map((ward) => (
-                      <option value={JSON.stringify(ward)} key={ward.code}>
-                        {ward.name}
-                      </option>
-                    ))}
-                  </select>
-                  <label>Phường/Xã</label>
-                </div>
-                <div className="input-group">
-                  <input
-                    onChange={handleInputChange}
-                    value={data.street}
-                    className="form-control text"
-                    required
-                    dir="auto"
-                    type="text"
-                    name="street"
-                    placeholder=""
-                  />
-                  <label>Số nhà, Phố</label>
-                </div>
+                {data.province && (
+                  <div className="input-group">
+                    <select
+                      id="district"
+                      dir="auto"
+                      name="district"
+                      onChange={(e) => {
+                        const selectedOption = JSON.parse(e.target.value);
+                        setData({ ...data, district: selectedOption.name });
+                        getWardList(selectedOption.code);
+                      }}
+                      value={JSON.stringify(districts.find((district) => district.name === data.district))}
+                      className="form-control dropdown"
+                      required
+                    >
+                      <option value="">Chọn quận/huyện</option>
+                      {districts?.map((district) => (
+                        <option value={JSON.stringify(district)} key={district.code}>
+                          {district.name}
+                        </option>
+                      ))}
+                    </select>
+                    <label>Quận/Huyện</label>
+                  </div>
+                )}
+                {data.district && (
+                  <div className="input-group">
+                    <select
+                      id="ward"
+                      dir="auto"
+                      name="ward"
+                      onChange={(e) => {
+                        const selectedOption = JSON.parse(e.target.value);
+                        setData({ ...data, ward: selectedOption.name });
+                      }}
+                      value={JSON.stringify(wards.find((ward) => ward.name === data.ward))}
+                      className="form-control dropdown"
+                      required
+                    >
+                      <option value="">Chọn phường/xã</option>
+                      {wards?.map((ward) => (
+                        <option value={JSON.stringify(ward)} key={ward.code}>
+                          {ward.name}
+                        </option>
+                      ))}
+                    </select>
+                    <label>Phường/Xã</label>
+                  </div>
+                )}
+                {data.ward && (
+                  <div className="input-group">
+                    <input
+                      onChange={handleInputChange}
+                      value={data.street}
+                      className="form-control text"
+                      required
+                      dir="auto"
+                      type="text"
+                      name="street"
+                      placeholder=""
+                    />
+                    <label>Số nhà, Phố</label>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
@@ -439,7 +203,7 @@ function FormPage() {
                   name="loan_amount"
                   placeholder=""
                 />
-                <label>Loan Amount</label>
+                <label>Số tiền vay</label>
               </div>
               <div className="input-group">
                 <select
@@ -451,12 +215,12 @@ function FormPage() {
                   className="form-control dropdown"
                   required
                 >
-                  <option value="1">Volvo</option>
-                  <option value="2">Saab</option>
-                  <option value="3">Fiat</option>
-                  <option value="4">Audi</option>
+                  <option value="1">Dịch vụ thẻ</option>
+                  <option value="2">Sản phẩm vay</option>
+                  <option value="3">Tiết kiệm</option>
+                  <option value="4">Tài khoản</option>
                 </select>
-                <label>San pham vay</label>
+                <label>Sản phẩm vay</label>
               </div>
             </div>
           )}
