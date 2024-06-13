@@ -7,40 +7,45 @@ import {
 } from 'class-validator';
 
 export class CreateInformationDto {
-  @IsNotEmpty({ message: 'Email cannot be empty' })
-  @IsEmail({}, { message: 'Invalid email format' })
+  @IsNotEmpty({ message: 'Email không thể rỗng' })
+  @IsEmail({}, { message: 'Email không phù hợp' })
   email: string;
 
-  @IsNotEmpty({ message: 'Phone number cannot be empty' })
-  @IsString({ message: 'Phone number must be string format' })
+  @IsNotEmpty({ message: 'Số điện thoại không thể rỗng' })
+  @IsString({ message: 'Số điện thoại phải là chuỗi' })
   @Length(10)
   phone: string;
 
-  @IsNotEmpty({ message: 'First name cannot be empty' })
-  @IsString({ message: 'First name must be string format' })
+  @IsNotEmpty({ message: 'Tên khách hàng không thể rỗng' })
+  @IsString({ message: 'Tên khách hàng phải là chuỗi' })
   first_name: string;
 
-  @IsNotEmpty({ message: 'Last name cannot be empty' })
-  @IsString({ message: 'Last name must be string format' })
+  @IsNotEmpty({ message: 'Căn cước công dân không thể rỗng' })
+  @IsString({ message: 'Căn cước công dân phải là chuỗi' })
+  @Length(12)
+  identification: string;
+
+  @IsNotEmpty({ message: 'Họ khách hàng không thể rỗng' })
+  @IsString({ message: 'Họ khách hàng phải là chuỗi' })
   last_name: string;
 
-  @IsNotEmpty({ message: 'Personal income cannot be empty' })
+  @IsNotEmpty({ message: 'Thu nhập cá nhân khách hàng không thể rỗng' })
   @IsNumber()
   personal_income: number;
 
-  @IsNotEmpty({ message: 'Province cannot be empty' })
-  @IsString({ message: 'Province must be string format' })
+  @IsNotEmpty({ message: 'Tên tỉnh không thể rỗng' })
+  @IsString({ message: 'Tên tỉnh phải là chuỗi' })
   province: string;
 
-  @IsNotEmpty({ message: 'District cannot be empty' })
-  @IsString({ message: 'District must be string format' })
+  @IsNotEmpty({ message: 'Tên huyện không thể rỗng' })
+  @IsString({ message: 'Tên huyện phải là chuỗi' })
   district: string;
 
-  @IsNotEmpty({ message: 'Ward cannot be empty' })
-  @IsString({ message: 'Ward must be string format' })
+  @IsNotEmpty({ message: 'Tên quận không thể rỗng' })
+  @IsString({ message: 'Tên quận phải là chuỗi' })
   ward: string;
 
-  @IsNotEmpty({ message: 'Street cannot be empty' })
-  @IsString({ message: 'Street must be string format' })
+  @IsNotEmpty({ message: 'Tên đường không thể rỗng' })
+  @IsString({ message: 'Tên đường phải là chuỗi' })
   street: string;
 }
