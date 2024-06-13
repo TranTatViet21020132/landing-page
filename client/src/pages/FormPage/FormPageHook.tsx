@@ -23,6 +23,7 @@ type ApiResponse = {
     email?: string;
     first_name?: string;
     last_name?: string;
+    identification?: string;
     phone?: string;
     personal_income?: number;
     is_verify_otp?: true;
@@ -53,6 +54,7 @@ export function useFormPageHook() {
     phone: "",
     first_name: "",
     last_name: "",
+    identification: "",
     personal_income: 1000000, //min 1 million
     province: "",
     district: "",

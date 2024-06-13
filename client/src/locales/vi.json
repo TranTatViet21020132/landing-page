@@ -84,6 +84,7 @@
   "formPage.subHeader.loanDetails": "Thông tin khoản vay",
   "formPage.label.firstName": "Tên",
   "formPage.label.lastName": "Họ",
+  "formPage.label.identification": "Số CMND/CCCD",
   "formPage.label.phone": "Số điện thoại",
   "formPage.label.income": "Thu nhập cá nhân (VNĐ/tháng)",
   "formPage.label.address.province": "Tỉnh/Thành phố",

@@ -69,10 +69,6 @@ const FormPage: React.FC = () => {
                   />
                   <label>{translate("formPage.label.lastName")}</label>
                 </div>
-              </div>
-
-              <div className="personal-income">
-                <h4>{translate("formPage.subHeader.incomeDetails")}</h4>
                 <div className="input-group">
                   <input
                     onChange={handleInputChange}
@@ -85,6 +81,23 @@ const FormPage: React.FC = () => {
                     placeholder=""
                   />
                   <label>{translate("formPage.label.phone")}</label>
+                </div>
+              </div>
+
+              <div className="personal-income">
+                <h4>{translate("formPage.subHeader.incomeDetails")}</h4>
+                <div className="input-group">
+                  <input
+                    onChange={handleInputChange}
+                    value={data.identification}
+                    className="form-control text"
+                    required
+                    dir="auto"
+                    type="text"
+                    name="identification"
+                    placeholder=""
+                  />
+                  <label>{translate("formPage.label.identification")}</label>
                 </div>
                 <div className="input-group">
                   <input
@@ -124,7 +137,7 @@ const FormPage: React.FC = () => {
                       </option>
                     ))}
                   </select>
-                  <label>{translate("formPage.label.province")}</label>
+                  <label>{translate("formPage.label.address.province")}</label>
                 </div>
                 {data.province && (
                   <div className="input-group">
@@ -148,7 +161,7 @@ const FormPage: React.FC = () => {
                         </option>
                       ))}
                     </select>
-                    <label>{translate("formPage.label.district")}</label>
+                    <label>{translate("formPage.label.address.district")}</label>
                   </div>
                 )}
                 {data.district && (
@@ -172,7 +185,7 @@ const FormPage: React.FC = () => {
                         </option>
                       ))}
                     </select>
-                    <label>{translate("formPage.label.ward")}</label>
+                    <label>{translate("formPage.label.address.ward")}</label>
                   </div>
                 )}
                 {data.ward && (
@@ -187,7 +200,7 @@ const FormPage: React.FC = () => {
                       name="street"
                       placeholder=""
                     />
-                    <label>{translate("formPage.label.street")}</label>
+                    <label>{translate("formPage.label.address.street")}</label>
                   </div>
                 )}
               </div>

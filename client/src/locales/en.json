@@ -84,6 +84,7 @@
   "formPage.subHeader.loanDetails": "Loan Information",
   "formPage.label.firstName": "First Name",
   "formPage.label.lastName": "Last Name",
+  "formPage.label.identification": "Identification",
   "formPage.label.phone": "Phone Number",
   "formPage.label.income": "Personal Income (VND/month)",
   "formPage.label.address.province": "Province/City",
