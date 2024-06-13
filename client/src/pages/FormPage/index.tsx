@@ -2,6 +2,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormPageHook } from './FormPageHook'
+import { useTranslation } from "react-i18next";
 import "./FormPage.css";
 
 const FormPage: React.FC = () => {
@@ -21,11 +22,13 @@ const FormPage: React.FC = () => {
     handleSubmit,
   } = useFormPageHook();
 
+  const [translate] = useTranslation();
+
   return (
     <div className="signup-form-page">
       <ToastContainer />
       <div className="signup-form-container">
-        <h2>Signup Form</h2>
+        <h2>{translate("formPage.header")}</h2>
         <div className="step-indicator-container">
           <div className={`indicator ${activeStep === 1 ? "active" : ""}`} onClick={() => handleIndicatorClick(1)}>
             <span>1</span>
@@ -39,7 +42,7 @@ const FormPage: React.FC = () => {
           {activeStep === 1 ? (
             <div>
               <div className="personal-infos">
-                <h4>Thông tin cá nhân</h4>
+                <h4>{translate("formPage.subHeader.personalDetails")}</h4>
                 <div className="input-group">
                   <input
                     onChange={handleInputChange}
@@ -51,7 +54,7 @@ const FormPage: React.FC = () => {
                     name="first_name"
                     placeholder=""
                   />
-                  <label>Tên</label>
+                  <label>{translate("formPage.label.firstName")}</label>
                 </div>
                 <div className="input-group">
                   <input
@@ -64,12 +67,12 @@ const FormPage: React.FC = () => {
                     name="last_name"
                     placeholder=""
                   />
-                  <label>Họ</label>
+                  <label>{translate("formPage.label.lastName")}</label>
                 </div>
               </div>
 
               <div className="personal-income">
-                <h4>Thông tin thu nhập</h4>
+                <h4>{translate("formPage.subHeader.incomeDetails")}</h4>
                 <div className="input-group">
                   <input
                     onChange={handleInputChange}
@@ -81,7 +84,7 @@ const FormPage: React.FC = () => {
                     name="phone"
                     placeholder=""
                   />
-                  <label>Số điện thoại</label>
+                  <label>{translate("formPage.label.phone")}</label>
                 </div>
                 <div className="input-group">
                   <input
@@ -95,12 +98,12 @@ const FormPage: React.FC = () => {
                     name="personal_income"
                     placeholder=""
                   />
-                  <label>Thu nhập cá nhân (VNĐ/tháng)</label>
+                  <label>{translate("formPage.label.income")}</label>
                 </div>
               </div>
 
               <div className="personal-address">
-                <h4>Thông tin địa chỉ</h4>
+                <h4>{translate("formPage.subHeader.addressDetails")}</h4>
                 <div className="input-group">
                   <select
                     id="province"
@@ -121,7 +124,7 @@ const FormPage: React.FC = () => {
                       </option>
                     ))}
                   </select>
-                  <label>Tỉnh/Thành phố</label>
+                  <label>{translate("formPage.label.province")}</label>
                 </div>
                 {data.province && (
                   <div className="input-group">
@@ -145,7 +148,7 @@ const FormPage: React.FC = () => {
                         </option>
                       ))}
                     </select>
-                    <label>Quận/Huyện</label>
+                    <label>{translate("formPage.label.district")}</label>
                   </div>
                 )}
                 {data.district && (
@@ -169,7 +172,7 @@ const FormPage: React.FC = () => {
                         </option>
                       ))}
                     </select>
-                    <label>Phường/Xã</label>
+                    <label>{translate("formPage.label.ward")}</label>
                   </div>
                 )}
                 {data.ward && (
@@ -184,14 +187,14 @@ const FormPage: React.FC = () => {
                       name="street"
                       placeholder=""
                     />
-                    <label>Số nhà, Phố</label>
+                    <label>{translate("formPage.label.street")}</label>
                   </div>
                 )}
               </div>
             </div>
           ) : (
             <div className="loan-details">
-              <h4>Thông tin khoản vay</h4>
+              <h4>{translate("formPage.subHeader.loanDetails")}</h4>
               <div className="input-group">
                 <input
                   onChange={handleInputChange}
@@ -203,7 +206,7 @@ const FormPage: React.FC = () => {
                   name="loan_amount"
                   placeholder=""
                 />
-                <label>Số tiền vay</label>
+                <label>{translate("formPage.label.loanAmount")}</label>
               </div>
               <div className="input-group">
                 <select
@@ -215,12 +218,12 @@ const FormPage: React.FC = () => {
                   className="form-control dropdown"
                   required
                 >
-                  <option value="1">Dịch vụ thẻ</option>
-                  <option value="2">Sản phẩm vay</option>
-                  <option value="3">Tiết kiệm</option>
-                  <option value="4">Tài khoản</option>
+                  <option value="1">{translate("formPage.option.loanProduct1")}</option>
+                  <option value="2">{translate("formPage.option.loanProduct2")}</option>
+                  <option value="3">{translate("formPage.option.loanProduct3")}</option>
+                  <option value="4">{translate("formPage.option.loanProduct4")}</option>
                 </select>
-                <label>Sản phẩm vay</label>
+                <label>{translate("formPage.label.loanProducts")}</label>
               </div>
             </div>
           )}

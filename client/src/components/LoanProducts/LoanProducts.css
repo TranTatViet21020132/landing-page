@@ -31,6 +31,11 @@
   box-shadow: 0 0 10px rgb(226, 226, 226);
   border-radius: var(--card-border-radius);
   padding: 0.8rem;
+  transition: all 200ms ease-in-out;
+}
+
+.product-card:hover {
+  transform: scale(95%);
 }
 
 .product-image-container {

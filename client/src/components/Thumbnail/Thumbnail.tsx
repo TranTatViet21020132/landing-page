@@ -6,6 +6,7 @@ import { FaCircleCheck } from "react-icons/fa6";
 import thumbnail from "../../assets/images/thumbnail.png";
 
 import { useThumbnailHook } from "./ThumbnailHook";
+import { useTranslation } from "react-i18next";
 
 import "./Thumbnail.css";
 import { FormContext } from '../../context/formContext';
@@ -30,6 +31,8 @@ const Thumbnail: React.FC = () => {
 
   const { email, setEmail } = React.useContext(FormContext) as FormContextType;
 
+  const [translate] = useTranslation();
+
   React.useEffect(() => {
     if (registerComplete) {
       setTimeout(() => {
@@ -41,7 +44,6 @@ const Thumbnail: React.FC = () => {
   React.useEffect(() => {
     if (otp.length === 6) {
       handleOtpOk(email);
-      // handleOtpOk("vinhphuccse@gmail.com");
     }
   }, [otp]);
 
@@ -49,36 +51,36 @@ const Thumbnail: React.FC = () => {
     <div className="thumbnail-container">
       <div className="thumbnail-titles">
         <Reveal>
-          <h2>Vay Nhanh - Lãi Mỏng</h2>
+          <h2>{translate("thumbnail.header")}</h2>
         </Reveal>
         <Reveal hiddenY={50}>
-          <h1>NHẬN TIỀN TRONG 1 GIỜ</h1>
+          <h1>{translate("thumbnail.subHeader")}</h1>
         </Reveal>
 
         <div className="checkpoints-container">
           <Reveal hiddenY={50} delay={0.4}>
             <div className="checkpoint">
               <FaCircleCheck color="#DD3333" />
-              <span>Tư vấn miễn phí và nhiệt tình</span>
+              <span>{translate("thumbnail.checkpoint1")}</span>
             </div>
           </Reveal>
           <Reveal hiddenY={50} delay={0.55}>
             <div className="checkpoint">
               <FaCircleCheck color="#DD3333" />
-              <span>Chỉ cần chuẩn bị giấy tờ photo</span>
+              <span>{translate("thumbnail.checkpoint2")}</span>
             </div>
           </Reveal>
           <Reveal hiddenY={50} delay={0.7}>
             <div className="checkpoint">
               <FaCircleCheck color="#DD3333" />
-              <span>Hạn mức duyệt vay 20Tr - 20Tỷ</span>
+              <span>{translate("thumbnail.checkpoint3")}</span>
             </div>
           </Reveal>
         </div>
 
         <Reveal hiddenY={50} delay={0.85}>
           <div className="thumbnail-button" onClick={showModal}>
-            <h4>VAY NGAY</h4>
+            <h4>{translate("thumbnail.button.title")}</h4>
           </div>
         </Reveal>
       </div>
@@ -87,7 +89,7 @@ const Thumbnail: React.FC = () => {
       </div>
 
       <Modal
-        title="ĐĂNG KÝ NGAY"
+        title={translate("thumbnail.registerModal.title")}
         width={400}
         open={open}
         onOk={() => handleOk(email)}
@@ -113,7 +115,7 @@ const Thumbnail: React.FC = () => {
       </Modal>
 
       <Modal
-        title="NHẬP MÃ OTP"
+        title={translate("thumbnail.otpModal.title")}
         width={400}
         open={showOtpModal}
         onOk={() => handleOtpOk(email)}

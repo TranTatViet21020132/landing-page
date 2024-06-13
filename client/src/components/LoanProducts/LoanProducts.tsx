@@ -9,39 +9,7 @@ import product4 from "../../assets/images/product4.jpg";
 import product5 from "../../assets/images/product5.jpg";
 import product6 from "../../assets/images/product6.jpg";
 import { Reveal } from "../Animation/Reveal";
-
-const cardContent = [
-  {
-    title: "CÔNG TY SẢN XUẤT ĐA TẦNG",
-    description: "Doanh nghiệp cần cấp vốn kinh doanh. Vay tín chấp và thế chấp lãi suất ưu đãi",
-    thumbnail: product1,
-  },
-  {
-    title: "KINH DOANH MÔ HÌNH LỚN NHỎ",
-    description: "Hỗ trợ nâng cấp vốn cho các tiểu thương. Bổ sung đáp ứng phát triển hoạt động",
-    thumbnail: product2,
-  },
-  {
-    title: "NHÂN VIÊN CÔNG TY ĐA NGÀNH",
-    description: "Được hưởng lương ngân hàng, tiền mặt. Nhiều chương trình hỗ trợ lãi suất ưu đãi",
-    thumbnail: product3,
-  },
-  {
-    title: "DOANH NGHIỆP PHÁT TRIỂN LỚN",
-    description: "Tài trợ cấp vốn đầu tư các dự án lớn, nhỏ. Luôn cập nhật gói vay trung và ngắn hạn",
-    thumbnail: product4,
-  },
-  {
-    title: "VÀ ĐỐI TƯỢNG KHÁC CẦN VAY",
-    description: "Đang cần nguồn vốn đầu tư khởi nghiệp. Nhiều cách vay lựa chọn và tham khảo..",
-    thumbnail: product5,
-  },
-  {
-    title: "CÔNG TÁC CƠ QUAN NHÀ NƯỚC",
-    description: "Nhiều gói vay cán bộ, chức trách cấp cao. Có rất nhiều chính sách ưu đãi dành riêng",
-    thumbnail: product6,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const responsive = {
   desktop: {
@@ -62,11 +30,46 @@ const responsive = {
 };
 
 const LoanProducts = () => {
+  const [translate] = useTranslation();
+
+  const cardContent = [
+    {
+      title: translate("loanProducts.title1"),
+      description: translate("loanProducts.description1"),
+      thumbnail: product4,
+    },
+    {
+      title: translate("loanProducts.title2"),
+      description: translate("loanProducts.description2"),
+      thumbnail: product2,
+    },
+    {
+      title: translate("loanProducts.title3"),
+      description: translate("loanProducts.description3"),
+      thumbnail: product6,
+    },
+    {
+      title: translate("loanProducts.title4"),
+      description: translate("loanProducts.description4"),
+      thumbnail: product3,
+    },
+    {
+      title: translate("loanProducts.title5"),
+      description: translate("loanProducts.description5"),
+      thumbnail: product1,
+    },
+    {
+      title: translate("loanProducts.title6"),
+      description: translate("loanProducts.description6"),
+      thumbnail: product5,
+    },
+  ];
+  
   return (
     <div className="loanProducts-container">
       <Reveal width="100%">
         <div className="loanProducts-header">
-          <h3>Sản phẩm dịch vụ vay</h3>
+          <h3>{translate("loanProducts.header")}</h3>
         </div>
       </Reveal>
       <>

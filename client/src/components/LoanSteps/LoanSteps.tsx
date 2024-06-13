@@ -2,37 +2,40 @@ import React from "react";
 import "./LoanSteps.css";
 import { Reveal } from "../Animation/Reveal";
 import { Slide } from "../Animation/Slide";
-
-const loanSteps = [
-  {
-    id: "01",
-    header: "LIÊN HỆ TƯ VẤN",
-    content: "Đăng Ký Online hoặc Alo Trực Tiếp",
-  },
-  {
-    id: "02",
-    header: "CHUẨN BỊ HỒ SƠ",
-    content: "Chuyên Viên Sẽ Hướng Dẫn Cụ Thể",
-  },
-  {
-    id: "03",
-    header: "NHẬN XÉT DUYỆT",
-    content: "Kết Quả Nhanh Sau Khi Nộp Hồ Sơ",
-  },
-  {
-    id: "04",
-    header: "KÝ HỢP ĐỒNG VAY",
-    content: "Nhận Trực Tiếp hoặc Chuyển Khoản",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const LoanSteps = () => {
+  const [translate] = useTranslation();
+
+  const loanSteps = [
+    {
+      id: "01",
+      header: translate("loanSteps.step1.header"),
+      content: translate("loanSteps.step1.content"),
+    },
+    {
+      id: "02",
+      header: translate("loanSteps.step2.header"),
+      content: translate("loanSteps.step2.content"),
+    },
+    {
+      id: "03",
+      header: translate("loanSteps.step3.header"),
+      content: translate("loanSteps.step3.content"),
+    },
+    {
+      id: "04",
+      header: translate("loanSteps.step4.header"),
+      content: translate("loanSteps.step4.content"),
+    },
+  ];
+
   return (
     <div className="loanSteps-container">
       <Reveal width="100%">
         <div className="loanSteps-title">
-          <h3>4 BƯỚC ĐƠN GIẢN VAY</h3>
-          <h4>QUY TRÌNH ĐƠN GIẢN - THỦ TỤC NHANH GỌN</h4>
+          <h3>{translate("loanSteps.header")}</h3>
+          <h4>{translate("loanSteps.subHeader")}</h4>
         </div>
       </Reveal>
       <Slide width="100%" hiddenX={1000} duration={1} delay={0.25}>

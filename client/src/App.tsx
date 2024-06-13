@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Loading from "./components/Loading";
+import LoadingPage from "./pages/LoadingPage";
 import MainLayout from "./layouts/MainLayout";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFoundPage";
 import { routes } from "./routes/routes";
 import FormProvider from "./context/formContext";
 
 function App() {
   return (
-    <>
+    <React.Fragment>
       <FormProvider>
-        <React.Suspense fallback={<Loading />}>
+        <React.Suspense fallback={<LoadingPage />}>
           <Routes>
             <Route element={<MainLayout />}>
               {routes &&
@@ -23,7 +23,7 @@ function App() {
           </Routes>
         </React.Suspense>
       </FormProvider>
-    </>
+    </React.Fragment>
   );
 }
 

@@ -2,18 +2,21 @@ import React from "react";
 import './Footer.css';
 import { Link } from "react-router-dom";
 import { FaYoutube, FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Footer: React.FC = () => {
+  const [translate] = useTranslation();
+  
   return (
     <div className="footer-container">
       <div className="footer-contents">
 
         <div className="footer-contacts col">
-          <h4>THÔNG TIN LIÊN HỆ</h4>
+          <h4>{translate("footer.col1.header")}</h4>
           <ul>
-            <li><span>Địa chỉ: 06 Nguyễn Khắc Viện, tòa nhà Capital Tower, Quận 7, HCM</span></li>
-            <li><span>Hotline: 090 677 1111</span></li>
-            <li><span>Email: nguyenle889tkhi@gmail.com</span></li>
+            <li><span>{translate("footer.col1.content1")}</span></li>
+            <li><span>{translate("footer.col1.content2")}</span></li>
+            <li><span>{translate("footer.col1.content3")}</span></li>
           </ul>
           <div className="footer-socials">
             <Link to={"https://youtube.com"} className="socials-link"><FaYoutube size={16}/></Link>
@@ -25,12 +28,12 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="footer-checkpoints col">
-          <h4>DỊCH VỤ UY TÍN</h4>
+          <h4>{translate("footer.col2.header")}</h4>
           <ul>
-            <li><span>Chúng tôi mang đến gói vay uy tín nhất cập nhật về đầy đủ DỊCH VỤ VAY TIỀN ONLINE</span></li>
-            <li><span>Tổng hợp những sản phẩm đa dạng Vay Tín Chấp & Vay Thế Chấp - HOT nhất hiện nay</span></li>
-            <li><span>Chuyên tư vấn tài chính với thủ tục đơn giản, vay tiền nhanh - TẤT CẢ ĐỀU VAY ĐƯỢC</span></li>
-            <li><span>Xây dựng các dịch vụ cho vay tiền dựa vào sự Trung Thật, Minh Bạch, Bảo Mật, UY TÍN</span></li>
+            <li><span>{translate("footer.col2.content1")}</span></li>
+            <li><span>{translate("footer.col2.content2")}</span></li>
+            <li><span>{translate("footer.col2.content3")}</span></li>
+            <li><span>{translate("footer.col2.content4")}</span></li>
           </ul>
         </div>
 
