@@ -1,15 +1,15 @@
 import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
 
 export class CreateApplicationDto {
-  @IsNotEmpty({ message: 'Loan amount cannot be empty' })
+  @IsNotEmpty({ message: 'Thu nhập cá nhân không thể rỗng' })
   @IsNumber()
   loan_amount: number;
 
-  @IsNotEmpty({ message: 'Customer id cannot be empty' })
-  @IsString({ message: 'Customer id must be string format' })
+  @IsNotEmpty({ message: 'Id khách hàng không thể rỗng' })
+  @IsString({ message: 'Id khách hàng phải là chuỗi' })
   customer_id: string;
 
-  @IsNotEmpty({ message: 'Reason id cannot be empty' })
-  @IsString({ message: 'Reason id must be string format' })
+  @IsNotEmpty({ message: 'Lý do vay không thể rỗng' })
+  @IsString({ message: 'Lý do vay phải là chuỗi' })
   reason_id: string;
 }

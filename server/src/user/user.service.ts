@@ -2,10 +2,15 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateInformationDto } from './dto/createInformation.dto';
 import { CreateApplicationDto } from './dto/createApplication.dto';
+import { MailerService } from 'src/mailer/mailer.service';
+import { sendMailOptions } from 'src/register/types';
 
 @Injectable()
 export class UserService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private mailerService: MailerService,
+  ) {}
 
   async createInformation(data: CreateInformationDto) {
     try {
@@ -14,12 +19,21 @@ export class UserService {
         first_name,
         last_name,
         personal_income,
+        identification,
         phone,
         district,
         province,
         ward,
         street,
       } = data;
+
+      if (personal_income < 1000000) {
+        throw new HttpException(
+          'Thu nhập tối thiểu chưa đủ yêu cầu vay',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
       const address = await this.prismaService.address.findFirst({
         where: {
           province,
@@ -55,18 +69,21 @@ export class UserService {
       });
 
       if (!customer) {
-        throw new HttpException('Customer not found', HttpStatus.BAD_REQUEST);
+        throw new HttpException(
+          'Không tìm thấy tài khoản',
+          HttpStatus.BAD_REQUEST,
+        );
       }
 
       if (customer) {
         if (!customer.is_verify_otp) {
           throw new HttpException(
-            'You are not verify account',
+            'Tài khoản của bạn chưa xác thực OTP',
             HttpStatus.BAD_REQUEST,
           );
         } else if (customer.status === 'BLOCKED') {
           throw new HttpException(
-            'Your account has been blocked',
+            'Tài khoản của bạn đã bị khóa',
             HttpStatus.BAD_REQUEST,
           );
         }
@@ -77,6 +94,7 @@ export class UserService {
           email,
         },
         data: {
+          identification: identification,
           first_name: first_name,
           last_name: last_name,
           personal_income: personal_income,
@@ -88,6 +106,7 @@ export class UserService {
           email: true,
           first_name: true,
           last_name: true,
+          identification: true,
           phone: true,
           personal_income: true,
           is_verify_otp: true,
@@ -113,13 +132,27 @@ export class UserService {
           id: customer_id,
         },
         select: {
+          email: true,
+          first_name: true,
+          last_name: true,
           is_verify_otp: true,
           status: true,
+          personal_income: true,
         },
       });
 
       if (!customer) {
-        throw new HttpException('Customer not found', HttpStatus.BAD_REQUEST);
+        throw new HttpException(
+          'Không tìm thấy tài khoản',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
+      if (customer.personal_income * 10 < loan_amount) {
+        throw new HttpException(
+          'Bạn chỉ có thể vay dưới 10 lần thu nhập cá nhân',
+          HttpStatus.BAD_REQUEST,
+        );
       }
 
       const application = await this.prismaService.application.create({
@@ -131,7 +164,13 @@ export class UserService {
         },
         select: {
           id: true,
-          customer_id: true,
+          customer: {
+            select: {
+              first_name: true,
+              last_name: true,
+              address: true,
+            },
+          },
           loan_amount: true,
           reason: {
             select: {
@@ -143,6 +182,16 @@ export class UserService {
           updated_at: true,
         },
       });
+
+      const sendMailOptions: sendMailOptions = {
+        to: customer.email,
+        subject: '[Loan Service]',
+        displayName: 'Customer',
+        infoLoan: application,
+        type: 'noti',
+      };
+
+      await this.mailerService.sendMail(sendMailOptions);
 
       return application;
     } catch (err) {

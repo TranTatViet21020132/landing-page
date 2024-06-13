@@ -27,7 +27,7 @@ export class RegisterService {
 
       if (customerExists) {
         throw new HttpException(
-          'Customer is already existed',
+          'Khách hàng không tồn tại',
           HttpStatus.BAD_REQUEST,
         );
       }
@@ -56,6 +56,7 @@ export class RegisterService {
         subject: '[Loan Service]',
         displayName: 'Customer',
         otp: otp,
+        type: 'confirm',
       };
 
       await this.mailerService.sendMail(sendMailOptions);
@@ -88,7 +89,7 @@ export class RegisterService {
 
       if (customer.is_verify_otp) {
         throw new HttpException(
-          'Your email is alreadly verified!',
+          'Tài khoản của bạn đã xác thực! Vui lòng đến bước tiếp theo',
           HttpStatus.BAD_REQUEST,
         );
       }
@@ -106,7 +107,10 @@ export class RegisterService {
             },
           });
         } else {
-          throw new HttpException('User is blocked', HttpStatus.BAD_REQUEST);
+          throw new HttpException(
+            'Tài khoản của bạn đã bị khóa',
+            HttpStatus.BAD_REQUEST,
+          );
         }
       }
 
@@ -132,14 +136,14 @@ export class RegisterService {
             },
           });
           throw new HttpException(
-            'Customer is blocked',
+            'Tài khoản của bạn đã bị khóa',
             HttpStatus.BAD_REQUEST,
           );
         }
         throw new HttpException(
-          `Invalid otp, you have ${
+          `OTP không đúng, bạn còn ${
             Limit.MAX_ATTEMPTS - updatedCustomer.attempts
-          } attempts left`,
+          } lần thử`,
           HttpStatus.BAD_REQUEST,
         );
       }
