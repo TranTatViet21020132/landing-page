@@ -1,0 +1,40 @@
+.loanDetailCard-container {
+  width: 28rem;
+  height: 6.8rem;
+  padding: 1.6rem;
+  box-shadow: 0 0 10px rgb(226, 226, 226);
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  border-radius: var(--card-border-radius);
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+  background: white;
+}
+
+.loanDetailCard-container:hover {
+  transform: scale(92%);
+}
+
+.loanDetailCard-container h4 {
+  text-decoration: underline 0.15em rgba(255, 255, 255, 0);
+  transition: text-decoration-color 200ms;
+  color: #DD3333;
+}
+
+.loanDetailCard-container h4:hover {
+  cursor: pointer;
+  text-decoration-color: #DD3333;
+}
+
+.discription-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+}
+
+.discription-list li {
+  font-size: 0.85rem;
+  list-style-type: circle;
+  margin-left: 1rem;
+}

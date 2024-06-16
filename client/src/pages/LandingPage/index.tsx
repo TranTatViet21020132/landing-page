@@ -7,6 +7,7 @@ import LoanProducts from "../../components/LoanProducts/LoanProducts";
 import LoanProcedures from "../../components/LoanProcedures/LoanProcedures";
 import LoanSteps from "../../components/LoanSteps/LoanSteps";
 import Progress from "../../components/Animation/Progress/Progress";
+import LoanDetails from "../../components/LoanDetails/LoanDetails";
 
 function LandingPage() {
   return (
@@ -14,6 +15,7 @@ function LandingPage() {
       <Thumbnail />
       <AdvantageCards />
       <LoanReasons />
+      <LoanDetails />
       <LoanProducts />
       <LoanProcedures />
       <LoanSteps />
