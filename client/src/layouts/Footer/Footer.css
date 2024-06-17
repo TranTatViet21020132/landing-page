@@ -7,6 +7,18 @@
   color: whitesmoke;
 }
 
+@media screen and (max-width: 767px) {
+  .footer-contents {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer-contents {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .footer-container span {
   color: #9B9B9C;
 }
@@ -14,7 +26,6 @@
 .footer-contents {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
 }
 
 .col {

@@ -104,22 +104,10 @@ body {
   box-shadow: 0 0 1px grey;
   padding: 0;
   margin: 0;
-  max-height: 100vh;
-  overflow: auto;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
   box-sizing: border-box;
-
-  --black: #000000;
-  --ash-black: #222;
-  --white: #fafafa;
-  --sky: #00ccff;
-  --green: #22dddd;
-  --blue: #1300ff;
-  --dusk: #6600ff;
-  --purple: #9900ff;
-  --pink: #ff0066;
-  --red: #fe0222;
-  --orange: #fd7702;
-  --yellow: #ffbb00;
 }
 
 .icon {

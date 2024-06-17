@@ -1,12 +1,128 @@
 .thumbnail-container {
   width: 100%;
-  height: 100vh;
+  
   position: relative;
   background: #F7DEC9;
+  background-image: linear-gradient(to bottom right, white, #f5d4ba);
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+}
+
+@media screen and (max-width: 767px) {
+  .thumbnail-container {
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .thumbnail-titles h1 {
+    font-size: 1.6rem;
+  }
+  
+  .thumbnail-titles h2 {
+    font-size: 1.4rem;
+  }
+  
+  .thumbnail-titles {
+    margin-top: 10rem;
+  }
+
+  .checkpoint span {
+    font-size: 1rem;
+  }
+
+  .thumbnail-button h4 {
+    font-size: 1rem;
+  }
+}
+
+
+@media screen and (max-width: 899px) and (min-width: 768px) {
+  .thumbnail-container {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .thumbnail-titles h1 {
+    font-size: 3rem;
+  }
+  
+  .thumbnail-titles h2 {
+    font-size: 2.2rem;
+  }
+  
+  .thumbnail-titles {
+    margin-top: 10rem;
+  }
+
+  .checkpoint span {
+    font-size: 1.4rem;
+  }
+
+  .thumbnail-button h4 {
+    font-size: 1.4rem;
+  }
+
+  .thumbnail-image {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 900px) {
+  .thumbnail-container {
+    flex-direction: column;
+    justify-content: start;
+    height: fit-content;
+  }
+
+  .thumbnail-titles h1 {
+    font-size: 3.4rem;
+  }
+  
+  .thumbnail-titles h2 {
+    font-size: 2.6rem;
+  }
+  
+  .thumbnail-titles {
+    margin-top: 8rem;
+  }
+
+  .checkpoint span {
+    font-size: 1.2rem;
+  }
+
+  .thumbnail-button h4 {
+    font-size: 1.2rem;
+  }
+
+  .thumbnail-image {
+    max-width: 60%;
+  }
+  
+  .thumbnail-image img {
+  }
+}
+
+@media (min-width: 1025px) {
+  .thumbnail-container {
+    height: 100vh;
+  }
+
+  .thumbnail-titles h1 {
+    font-size: 2.4rem;
+  }
+  
+  .thumbnail-titles h2 {
+    font-size: 2rem;
+  }
+
+  .thumbnail-image {
+    height: 100vh;
+  }
 }
 
 .thumbnail-titles {
@@ -17,12 +133,7 @@
 }
 
 .thumbnail-titles h1 {
-  font-size: 2.4rem;
   color: #DD3333;
-}
-
-.thumbnail-titles h2 {
-  font-size: 2rem;
 }
 
 .checkpoints-container {
@@ -65,11 +176,10 @@
 }
 
 .thumbnail-image {
-  object-fit: contain;
+  object-fit: cover;
   overflow: hidden;
   display: flex;
   justify-content: end;
-  height: 100vh;
   aspect-ratio: inherit;
 }
 

@@ -1,5 +1,4 @@
 .card-container {
-  max-width: 12rem;
   height: fit-content;
   padding: 1.6rem;
   box-shadow: 0 0 10px rgb(226, 226, 226);
@@ -11,6 +10,30 @@
   cursor: pointer;
   background: white;
 }
+
+@media screen and (min-width: 1025px) {
+  .card-container {
+    width: 12rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .card-container {
+    width: fit-content;
+  }
+}
+
+/* @media screen and (max-width: 819px) and (min-width: 768px) {
+  .card-container {
+    width: 50rem,
+  }
+} */
+
+/* @media (max-width: 767px) {
+  .card-container {
+    width: 100vw,
+  }
+} */
 
 .card-container:hover {
   background: #DD3333;

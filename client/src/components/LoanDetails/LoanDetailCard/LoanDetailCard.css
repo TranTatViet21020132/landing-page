@@ -1,11 +1,11 @@
 .loanDetailCard-container {
-  width: 28rem;
   height: 6.8rem;
   padding: 1.6rem;
   box-shadow: 0 0 10px rgb(226, 226, 226);
   display: flex;
   flex-direction: column;
   justify-self: center;
+  align-self: center;
   border-radius: var(--card-border-radius);
   transition: all 200ms ease-in-out;
   cursor: pointer;
@@ -31,10 +31,12 @@
   display: flex;
   flex-direction: column;
   row-gap: 0.4rem;
+  word-break: break-word;
 }
 
 .discription-list li {
   font-size: 0.85rem;
   list-style-type: circle;
   margin-left: 1rem;
+  word-break: break-word;
 }

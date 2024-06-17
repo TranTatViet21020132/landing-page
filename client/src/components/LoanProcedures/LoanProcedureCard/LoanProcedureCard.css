@@ -18,7 +18,30 @@
   height: fit-content;
   width: 100%;
   background: #F7DEC9;
+  background-image: linear-gradient(rgb(247, 215, 215), #F7DEC9);
   border-radius: 10px;
+}
+
+@media (max-width: 1024px) {
+  .loanProcedures-item {
+    height: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .loan-procedures {
+    height: 22rem;
+  }
+
+  .loan-procedures-header h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .loan-procedures {
+    height: fit-content;
+  }
 }
 
 .loan-procedures-header {
