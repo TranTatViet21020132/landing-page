@@ -9,7 +9,8 @@
   align-items: center;
   width: 100%;
   color: grey;
-  height: fit-content;
+
+  min-height: 100vh;
 }
 
 .signup-form-page h2 {
