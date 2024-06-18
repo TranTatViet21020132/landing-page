@@ -147,6 +147,10 @@
   align-items: center;
 }
 
+.checkpoint span {
+  color: var(--color-font-secondary);
+}
+
 .thumbnail-button {
   background: rgb(248, 201, 199);
   border-radius: var(--card-border-radius);

@@ -71,6 +71,10 @@
   justify-content: space-between;
 }
 
+.loanProcedures-item span {
+  color: var(--color-font-secondary);
+}
+
 .loanProcedures-item:hover {
   filter: brightness(80%);
   background: #f7dec96b;

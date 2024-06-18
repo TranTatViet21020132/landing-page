@@ -3,7 +3,7 @@
   --color-switch: #000;
   --formpage_bg_url: url("./assets/images/formpage_bg.jpg");
 
-  --color-font: rgb(176, 176, 176);
+  --color-font: #413b3b;
   --color-font-secondary: black;
   --color-header: black;
   --color-background-shade: #eee;
@@ -31,7 +31,7 @@
   --color-switch: #eee;
   --formpage_bg_url: url("./assets/images/formpage_bg_dark.jpg");
 
-  --color-font: #eee;
+  --color-font: rgb(176, 176, 176);
   --color-font-secondary: #ffffff;
   --color-header: white;
   --color-background-shade: #4d3737;
@@ -107,7 +107,6 @@ h4 {
 span {
   font-size: 0.85rem;
   font-family: "Sarabun-Regular";
-  color: var(--color-font-secondary);
 }
 
 ul {

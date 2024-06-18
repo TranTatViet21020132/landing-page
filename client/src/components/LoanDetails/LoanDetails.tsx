@@ -17,7 +17,7 @@ const LoanDetails = () => {
         line4: translate("loanDetail.description1.line4"),
       },
       hiddenY: -50,
-      delay: 0.25,
+      delay: 0.4,
     },
     {
       title: translate("loanDetail.title2"),
@@ -28,7 +28,7 @@ const LoanDetails = () => {
         line4: translate("loanDetail.description2.line4"),
       },
       hiddenY: -50,
-      delay: 0.5,
+      delay: 0.6,
     },
     {
       title: translate("loanDetail.title3"),
@@ -39,7 +39,7 @@ const LoanDetails = () => {
         line4: translate("loanDetail.description3.line4"),
       },
       hiddenY: -50,
-      delay: 0.75,
+      delay: 0.8,
     },
     {
       title: translate("loanDetail.title4"),
@@ -51,7 +51,7 @@ const LoanDetails = () => {
 
   return (
     <div className="loanDetails-container">
-      <Reveal>
+      <Reveal delay={0}>
         <div className="loanDetails-header">
           <h3>Vay Nhanh - Lãi Mỏng</h3>
         </div>

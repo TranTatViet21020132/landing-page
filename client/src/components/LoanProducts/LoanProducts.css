@@ -21,6 +21,10 @@
   text-decoration-color: rgba(255, 68, 68, 1);
 }
 
+.product-label-container span {
+  color: var(--color-font);
+}
+
 .product-card {
   height: fit-content;
   position: relative;
