@@ -13,7 +13,7 @@ datasource db {
 
 model customer {
   id              String        @id @default(uuid())
-  email           String        @unique
+  email           String
   phone           String?
   identification  String?
   first_name      String?
