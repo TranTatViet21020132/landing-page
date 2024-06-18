@@ -7,6 +7,7 @@ import { LoanApplication } from "../../types/FormPage/LoanApplication";
 import { FormContext } from "../../context/formContext";
 import { FormContextType } from "../../types/FormPage/FormContext";
 import axios from "axios";
+import { redirect } from "react-router-dom";
 
 type ApiResponse = {
   message?: string;
@@ -68,6 +69,9 @@ export function useFormPageHook() {
     customer_id: "",
   });
 
+  const [dataErrors, setDataErrors] = useState<Partial<Record<keyof UserSignup, string>>>({});
+  const [loanDataErrors, setLoanDataErrors] = useState<Partial<Record<keyof LoanApplication, string>>>({});
+
   const [loading, setLoading] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
 
@@ -127,11 +131,65 @@ export function useFormPageHook() {
     }
   };
 
+  const validateUserData = (data: UserSignup) => {
+    const errors: Partial<Record<keyof UserSignup, string>> = {};
+
+    if (!data.phone || !/^\d{10}$/.test(data.phone)) {
+      errors.phone = "Phone number must be 10 digits";
+    }
+    if (!data.first_name) {
+      errors.first_name = "First name is required";
+    }
+    if (!data.last_name) {
+      errors.last_name = "Last name is required";
+    }
+    if (!data.identification || !/^\d{12}$/.test(data.identification)) {
+      errors.identification = "Identification must be 12 digits";
+    }
+    if (data.personal_income < 1000000) {
+      errors.personal_income = "Personal income must be at least 1,000,000";
+    }
+    if (!data.province) {
+      errors.province = "Province is required";
+    }
+    if (!data.district) {
+      errors.district = "District is required";
+    }
+    if (!data.ward) {
+      errors.ward = "Ward is required";
+    }
+    if (!data.street) {
+      errors.street = "Street is required";
+    }
+  
+    setDataErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+  
+  const validateLoanData = (loanData: LoanApplication) => {
+    const errors: Partial<Record<keyof LoanApplication, string>> = {};
+  
+    if (!loanData.loan_amount || loanData.loan_amount <= 0) {
+      errors.loan_amount = "Loan amount must be greater than zero";
+    }
+    if (!loanData.reason_id) {
+      errors.reason_id = "A loan product is required";
+    }
+  
+    setLoanDataErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
     if (activeStep === 1) {
+      if (!validateUserData(data)) {
+        setLoading(false);
+        return;
+      }
+
       try {
         toast.dismiss();
         toast.info("Validating, please wait...", {
@@ -185,6 +243,12 @@ export function useFormPageHook() {
         setLoading(false);
       }
     } else if (activeStep === 2) {
+
+      if (!validateLoanData(loanData)) {
+        setLoading(false);
+        return;
+      }
+
       try {
         toast.dismiss();
         toast.info("Submitting application, please wait...", {
@@ -211,6 +275,7 @@ export function useFormPageHook() {
             closeOnClick: false,
             theme: "dark",
           });
+          redirect("/");
         } else {
           toast.dismiss();
           toast.error("Application submission failed", {
@@ -246,6 +311,8 @@ export function useFormPageHook() {
     setData,
     loanData,
     setLoanData,
+    dataErrors,
+    loanDataErrors,
     loading,
     activeStep,
     getDistrictList,

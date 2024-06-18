@@ -3,6 +3,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import logo from '../../assets/images/LogoViettelchuẩn-02-transparent.png';
 import LocaleSwitcher from "../../components/LocaleSwitcher/LocaleSwitcher";
 import "./Header.css"
+import DarkMode from "../../components/Animation/DarkMode/DarkMode";
 
 const Header: React.FC = () => {
   return (
@@ -18,10 +19,11 @@ const Header: React.FC = () => {
           </div>
 
           <div className="header-icon-container">
-            <MdOutlineDarkMode
+            {/* <MdOutlineDarkMode
             className={`icon`}
             size={26}
-            />
+            /> */}
+            <DarkMode />
           </div>
           
         </div>

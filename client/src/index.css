@@ -1,11 +1,43 @@
 :root {
-  --color-yellow-300: #e8e0d8;
-  --color-yellow: #918b7c;
-
-  --color-hover: #bfbf9c;
   --card-border-radius: 0.3rem;
 
-    --font-color: #eee;
+  --font-color: rgb(176, 176, 176);
+  --switch-color: black;
+  --background-color: #212121;
+  --color-background-secondary: rgb(15, 15, 15);
+  --color-primary: rgb(135, 116, 225);
+  --search-bg-color: #181818;
+  --border: none;
+  --border-on-click: #8774e1;
+  --hover: #2b2b2b;
+  --bg-chat-1: black;
+  --bg-chat-2: black;
+  --bg-chat-3: black;
+  --bg-chat-4: black;
+  --stroke-color: url(#stroke-gradient);
+  --icon-color: #aaaaaa;
+  --icon-color-active: var(--border-on-click);
+  --header-border: black;
+  --color-background-secondary-accent: rgb(16, 15, 16);
+  --color-borders-input: rgb(91, 91, 90);
+  --color-placeholders: #a2acb4;
+  --color-text-secondary: rgb(170, 170, 170);
+  --color-background-compact-menu: rgb(33, 33, 33, 0.867);
+  --color-background-compact-menu-hover: rgb(0, 0, 0, 0.4);
+  --color-default-shadow: rgb(16, 16, 16, 0.612);
+  --color-primary-shade: rgb(123, 113, 198);
+  --checkbox-fill: var(--border-on-click);
+  --bg-hover: #322525;
+  --sec-bg: #181818;
+  --gradient-bg: rgb(182, 168, 225);
+  --msgtextbox-color: #3A3B3C;
+  --chat-ib-color-self: rgb(135, 116, 225);
+}
+
+[data-theme="dark"] {
+  --card-border-radius: 0.3rem;
+
+  --font-color: #eee;
   --switch-color: black;
   --background-color: #212121;
   --color-background-secondary: rgb(15, 15, 15);
@@ -111,10 +143,12 @@ body {
   box-sizing: border-box;
 }
 
-.icon {
-  color: black;
-}
-
 html {
   scroll-behavior: smooth;
+}
+
+.error {
+  color: red;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
 }

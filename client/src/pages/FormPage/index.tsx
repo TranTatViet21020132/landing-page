@@ -13,6 +13,8 @@ const FormPage: React.FC = () => {
     data,
     setData,
     loanData,
+    dataErrors,
+    loanDataErrors,
     loading,
     activeStep,
     getDistrictList,
@@ -81,6 +83,7 @@ const FormPage: React.FC = () => {
                     placeholder=""
                   />
                   <label>{translate("formPage.label.phone")}</label>
+                  {dataErrors.phone && <span className="error">{dataErrors.phone}</span>}
                 </div>
               </div>
 
@@ -98,6 +101,7 @@ const FormPage: React.FC = () => {
                     placeholder=""
                   />
                   <label>{translate("formPage.label.identification")}</label>
+                  {dataErrors.identification && <span className="error">{dataErrors.identification}</span>}
                 </div>
                 <div className="input-group">
                   <input
@@ -220,6 +224,7 @@ const FormPage: React.FC = () => {
                   placeholder=""
                 />
                 <label>{translate("formPage.label.loanAmount")}</label>
+                {loanDataErrors.loan_amount && <span className="error">{loanDataErrors.loan_amount}</span>}
               </div>
               <div className="input-group">
                 <select

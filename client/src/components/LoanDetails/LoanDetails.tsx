@@ -16,8 +16,8 @@ const LoanDetails = () => {
         line3: translate("loanDetail.description1.line3"),
         line4: translate("loanDetail.description1.line4"),
       },
-      hiddenY: 25,
-      delay: 0,
+      hiddenY: -50,
+      delay: 0.25,
     },
     {
       title: translate("loanDetail.title2"),
@@ -27,8 +27,8 @@ const LoanDetails = () => {
         line3: translate("loanDetail.description2.line3"),
         line4: translate("loanDetail.description2.line4"),
       },
-      hiddenY: -25,
-      delay: 0.25,
+      hiddenY: -50,
+      delay: 0.5,
     },
     {
       title: translate("loanDetail.title3"),
@@ -38,14 +38,14 @@ const LoanDetails = () => {
         line3: translate("loanDetail.description3.line3"),
         line4: translate("loanDetail.description3.line4"),
       },
-      hiddenY: 25,
-      delay: 0.5,
+      hiddenY: -50,
+      delay: 0.75,
     },
     {
       title: translate("loanDetail.title4"),
       description: translate("loanDetail.description4"),
-      hiddenY: -25,
-      delay: 0.75
+      hiddenY: -50,
+      delay: 1
     },
   ];
 

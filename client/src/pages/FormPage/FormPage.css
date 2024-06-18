@@ -93,6 +93,7 @@
   font-weight: 550;
   transition: filter 0.1s ease;
   width: 100%;
+  cursor: pointer;
 }
 
 .submit-btn:hover {

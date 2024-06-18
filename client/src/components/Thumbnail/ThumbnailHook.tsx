@@ -16,9 +16,22 @@ export function useThumbnailHook() {
     setOpen(true);
   };
 
+  const validateEmail = (email: string) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const handleOk = React.useCallback(
     async (email: string) => {
       setConfirmLoading(true);
+
+      if (!validateEmail(email)) {
+        setConfirmLoading(false);
+        return;
+      }
 
       try {
         const response = await axios.post("http://localhost:8080/api/register", {
@@ -148,5 +161,6 @@ export function useThumbnailHook() {
     handleOtpCancel,
     handlePaste,
     setShowOtpModal,
+    validateEmail
   };
 }
