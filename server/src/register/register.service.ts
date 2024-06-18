@@ -19,19 +19,6 @@ export class RegisterService {
     try {
       const { email } = registerDto;
 
-      let customerExists = await this.prismaService.customer.findUnique({
-        where: {
-          email: email,
-        },
-      });
-
-      if (customerExists) {
-        throw new HttpException(
-          'Khách hàng không tồn tại',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-
       const otp = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
         lowerCaseAlphabets: false,

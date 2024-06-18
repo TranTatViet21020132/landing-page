@@ -92,25 +92,6 @@ describe('RegisterService', () => {
       });
       expect(result).toEqual({ id: 1, email: 'test@example.com' });
     });
-
-    it('should throw an exception if customer already exists', async () => {
-      const registerDto = { email: 'existing@example.com' };
-
-      (prismaService.customer.findUnique as jest.Mock).mockResolvedValue({
-        id: 1,
-        email: 'existing@example.com',
-      });
-
-      await expect(service.registerAccount(registerDto)).rejects.toThrow(
-        new HttpException('Khách hàng không tồn tại', HttpStatus.BAD_REQUEST),
-      );
-
-      expect(prismaService.customer.findUnique).toHaveBeenCalledWith({
-        where: { email: 'existing@example.com' },
-      });
-      expect(prismaService.customer.create).not.toHaveBeenCalled();
-      expect(mailerService.sendMail).not.toHaveBeenCalled();
-    });
   });
 
   describe('checkValidOtp', () => {
