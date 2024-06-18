@@ -7,7 +7,7 @@
   justify-items: center;
   align-content: space-evenly;
   align-items: center;
-  background: white;
+  background: var(--color-background-secondary);
 }
 
 @media (max-width: 1024px) {

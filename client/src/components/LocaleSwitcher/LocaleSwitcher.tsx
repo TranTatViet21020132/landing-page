@@ -41,7 +41,7 @@ export default function LocaleSwitcher() {
           alt="English"
         />
       }
-      {modeMenuState === false ? <FaChevronDown /> : <FaChevronUp />}
+      {modeMenuState === false ? <FaChevronDown className="icon"/> : <FaChevronUp className="icon"/>}
       </div>          
       <ul>
         {Object.entries(supportedLngs).map(([code, name]) => (

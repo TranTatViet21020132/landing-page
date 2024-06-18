@@ -5,7 +5,7 @@
   padding: 1rem 2rem 2rem 2rem;
   row-gap: 1rem;
   background: #F7DEC9;
-  background-image: linear-gradient(#F7DEC9, white);
+  background-image: linear-gradient(var(--color-background-primary), var(--color-background-shade));
 }
 
 .loanReasons-content {
@@ -28,7 +28,7 @@
 .loanReasons-content .checkpoint {
   padding: 0.4rem 1rem;
   border-radius: 9999px;
-  background-color: #EEDDDD;
+  background-color: var(--color-background-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,14 +1,14 @@
 .card-container {
   height: fit-content;
   padding: 1.6rem;
-  box-shadow: 0 0 10px rgb(226, 226, 226);
+  box-shadow: 0 0 10px var(--color-box-shadow);
   display: flex;
   flex-direction: column;
   justify-self: center;
   border-radius: var(--card-border-radius);
   transition: all 300ms ease-in-out;
   cursor: pointer;
-  background: white;
+  background: var(--color-background-secondary-shade);
 }
 
 @media screen and (min-width: 1025px) {
@@ -23,20 +23,8 @@
   }
 }
 
-/* @media screen and (max-width: 819px) and (min-width: 768px) {
-  .card-container {
-    width: 50rem,
-  }
-} */
-
-/* @media (max-width: 767px) {
-  .card-container {
-    width: 100vw,
-  }
-} */
-
 .card-container:hover {
-  background: #DD3333;
+  background: var(--color-card-hover);
   transform: scale(92%);
 }
 
@@ -48,6 +36,7 @@
 .card-container h4 {
   text-decoration: underline 0.15em rgba(255, 255, 255, 0);
   transition: text-decoration-color 300ms;
+  color: var(--color-font-secondary);
 }
 
 .card-container h4:hover {

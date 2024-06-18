@@ -32,6 +32,10 @@
   padding: 2rem 1.4rem 0;
 }
 
+.col h4 {
+  color: white;
+}
+
 .footer-socials {
   display: flex;
   justify-content: start;

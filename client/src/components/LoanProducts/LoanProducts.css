@@ -1,6 +1,6 @@
 .loanProducts-container {
   width: 100%;
-  background: #EFF0F0;
+  background: var(--color-background-tertiary-shade);
   padding: 1rem 0;
 }
 
@@ -27,8 +27,8 @@
   overflow: "hidden";
   margin: 0 1.2rem;
   cursor: pointer;
-  background: white;
-  box-shadow: 0 0 10px rgb(226, 226, 226);
+  background: var(--color-background-secondary-shade);
+  box-shadow: 0 0 10px var(--color-box-shadow);
   border-radius: var(--card-border-radius);
   padding: 0.8rem;
   transition: all 200ms ease-in-out;

@@ -18,7 +18,7 @@
   height: fit-content;
   width: 100%;
   background: #F7DEC9;
-  background-image: linear-gradient(rgb(247, 215, 215), #F7DEC9);
+  background-image: linear-gradient(to bottom right, var(--color-background-shade), var(--color-background-primary));
   border-radius: 10px;
 }
 

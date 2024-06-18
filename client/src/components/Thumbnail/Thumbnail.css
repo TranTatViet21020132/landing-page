@@ -2,8 +2,8 @@
   width: 100%;
   
   position: relative;
-  background: #F7DEC9;
-  background-image: linear-gradient(to bottom right, white, #f5d4ba);
+  background: var(--color-background-primary);
+  background-image: linear-gradient(to bottom right, var(--color-background-shade), var(--color-background-primary));
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -102,9 +102,7 @@
   .thumbnail-image {
     max-width: 60%;
   }
-  
-  .thumbnail-image img {
-  }
+
 }
 
 @media (min-width: 1025px) {
@@ -133,7 +131,7 @@
 }
 
 .thumbnail-titles h1 {
-  color: #DD3333;
+  color: var(--color-primary);
 }
 
 .checkpoints-container {
@@ -161,6 +159,10 @@
   cursor: pointer;
   animation: zoom-in-zoom-out 1.75s ease infinite;
   box-shadow: 1 1 1px gray;
+}
+
+.thumbnail-button h4 {
+  color: #181818;
 }
 
 @keyframes zoom-in-zoom-out {

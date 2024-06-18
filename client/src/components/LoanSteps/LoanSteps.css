@@ -16,6 +16,10 @@
   color: #DD3333;
 }
 
+.loanSteps-title h4 {
+  color: black;
+}
+
 .loanSteps-content {
   width: 100%;
   display: grid;
@@ -40,7 +44,7 @@
 .single-step {
   padding: 1.4rem 0.8rem;
   width: 80%;
-  background: rgba(255,255,255,0.84);
+  background: var(--color-step-bg);
   justify-self: center;
   border-radius: var(--card-border-radius);
   display: flex;

@@ -1,5 +1,5 @@
 .signup-form-page {
-  background-image: url(../../assets//images/formpage_bg.jpg);
+  background-image: var(--formpage_bg_url);
   background-repeat: no-repeat;
   background-size: cover;
   box-sizing: border-box;
@@ -16,12 +16,12 @@
 .signup-form-page h2 {
   font-weight: 600;
   font-size: 2rem;
-  color: black;
+  color: var(--color-font-secondary);
 }
 
 .signup-form-container {
   margin: 4rem 0;
-  background: white;
+  background: var(--color-background-secondary);
   padding: 1.6rem 3rem;
   width: 40%;
   display: flex;
@@ -53,7 +53,7 @@
 
 .indicator span {
   font-size: 1rem;
-  color: black;
+  color: var(--color-font-secondary);
   font-weight: bold;
 }
 
@@ -165,7 +165,7 @@
   position: absolute;
   left: 0.75rem;
   top: 0.9375rem;
-  background-color: #fff;
+  background-color: var(--color-background-secondary);
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-placeholders);
