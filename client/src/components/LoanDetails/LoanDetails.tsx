@@ -53,7 +53,7 @@ const LoanDetails = () => {
     <div className="loanDetails-container">
       <Reveal delay={0}>
         <div className="loanDetails-header">
-          <h3>Vay Nhanh - Lãi Mỏng</h3>
+          <h3>{translate("loanDetails.header")}</h3>
         </div>
       </Reveal>
       <div className="loanDetails-content">

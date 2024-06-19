@@ -7,7 +7,8 @@ import { LoanApplication } from "../../types/FormPage/LoanApplication";
 import { FormContext } from "../../context/formContext";
 import { FormContextType } from "../../types/FormPage/FormContext";
 import axios from "axios";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 type ApiResponse = {
   message?: string;
@@ -45,6 +46,7 @@ type ApiResponse = {
 
 export function useFormPageHook() {
   const { email } = React.useContext(FormContext) as FormContextType;
+  const navigate = useNavigate();
   
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [districts, setDistricts] = useState<District[]>([]);
@@ -183,13 +185,13 @@ export function useFormPageHook() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-
+  
     if (activeStep === 1) {
       if (!validateUserData(data)) {
         setLoading(false);
         return;
       }
-
+  
       try {
         toast.dismiss();
         toast.info("Validating, please wait...", {
@@ -200,10 +202,10 @@ export function useFormPageHook() {
           closeOnClick: false,
           theme: "dark",
         });
-
+  
         let response: ApiResponse;
         response = await UserApi.addInformation(data);
-
+  
         if (response.statusCode === 200) {
           toast.dismiss();
           toast.success("Validation successful. Proceeding to next step...", {
@@ -214,7 +216,7 @@ export function useFormPageHook() {
             closeOnClick: false,
             theme: "dark",
           });
-
+  
           setLoanData((prev) => ({ ...prev, customer_id: response.data?.id ?? "" }));
           setActiveStep(2);
           window.scrollTo(0, 0);
@@ -243,12 +245,12 @@ export function useFormPageHook() {
         setLoading(false);
       }
     } else if (activeStep === 2) {
-
+  
       if (!validateLoanData(loanData)) {
         setLoading(false);
         return;
       }
-
+  
       try {
         toast.dismiss();
         toast.info("Submitting application, please wait...", {
@@ -259,12 +261,14 @@ export function useFormPageHook() {
           closeOnClick: false,
           theme: "dark",
         });
-
+  
         console.log("loanData:", loanData);
-
+  
         let response: ApiResponse;
         response = await UserApi.loan(loanData);
-
+  
+        console.log(response.message)
+  
         if (response.statusCode === 200) {
           toast.dismiss();
           toast.success("Application submitted successfully. Redirecting...", {
@@ -275,10 +279,12 @@ export function useFormPageHook() {
             closeOnClick: false,
             theme: "dark",
           });
-          redirect("/");
+          setTimeout((
+            () => navigate("/")
+          ), 2500);
         } else {
           toast.dismiss();
-          toast.error("Application submission failed", {
+          toast.error("Bạn chỉ có thể vay dưới 10 lần thu nhập cá nhân", {
             position: "top-center",
             autoClose: 2500,
             hideProgressBar: true,
@@ -302,7 +308,7 @@ export function useFormPageHook() {
       }
     }
   };
-
+  
   return {
     provinces,
     districts,
